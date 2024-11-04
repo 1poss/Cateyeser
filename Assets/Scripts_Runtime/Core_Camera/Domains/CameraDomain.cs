@@ -69,10 +69,15 @@ namespace NJM.CoreCamera.Internal {
             Vector3 target_pos = args.targetPos;
             Vector3 target_forward = args.targetForward;
 
-            // Follow
-            Vector3 dir_n = -target_forward;
+            // Offset: X
+            Vector3 right = Vector3.Cross(Vector3.up, target_forward);
+            target_pos += right * entity.followOffset.x;
 
-            Vector3 finalPos = target_pos + dir_n * entity.followOffset.z;
+            // Offset: Y
+            target_pos += Vector3.up * entity.followOffset.y;
+
+            // Offset: Z
+            Vector3 finalPos = target_pos + -target_forward * entity.followOffset.z;
 
             // TODO: Easing
 
