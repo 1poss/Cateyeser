@@ -1,0 +1,30 @@
+- Stage 关卡构成
+    - Terrain 128*128m(暂定)
+    - Roles
+    - Props
+    - Static Cameras
+    - Directional Light
+    - Point Light
+    - Sky
+    - Cloud
+
+- 关卡生成顺序
+    - Light
+    - Terrain
+        - (可选)分块
+    - Static Camera
+    - Props
+    - 调整主角坐标
+    - 动态相机
+
+- Spwaner 类型
+    - RoleSpawner
+    - PropSpawner
+    - CameraSpawner
+    - LightSpawner
+    - TerrainSpawner
+
+- Props 类型
+    - Entrance
+    - Static Mesh
+    - Area Trigger

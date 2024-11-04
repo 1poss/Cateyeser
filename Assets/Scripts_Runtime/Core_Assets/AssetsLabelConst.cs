@@ -8,6 +8,7 @@ namespace NJM.CoreAssets.Internal {
         public const string UI_PANEL = "UI_Panel";
 
         public const string SO_ROLE = "So_Role";
+        public const string SO_STAGE = "So_Stage";
 
     }
 

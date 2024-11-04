@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1b8a5e2067a4e24bba6a21d77fdc7d7, type: 3}
+  m_Name: So_GameSetting
+  m_EditorClassIdentifier: 
+  tm:
+    startStage:
+      value: 65537
+      chapter: 1
+      stage: 1
+      sub_stage: 0
+    logoMaintainSec: 0
+    fps_rotationSpeed: {x: 90, y: 45}
+    fsp_isInvertX: 0
+    fps_isInvertY: 0
+    tps_rotationSpeed: {x: 180, y: 90}
+    tps_isInvertX: 0
+    tps_isInvertY: 1
+    resolution: {x: 1280, y: 720}
+    fullScreenMode: 0

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using NJM.Controllers;
+using NJM.Template;
 
 namespace NJM.MainEntry {
 
@@ -8,6 +9,8 @@ namespace NJM.MainEntry {
 
         [SerializeField] Camera mainCamera;
         [SerializeField] Camera uiCamera;
+
+        [SerializeField] GameSettingSO gameSettingSO;
 
         GameContext ctx;
 
@@ -22,6 +25,7 @@ namespace NJM.MainEntry {
             ctx.Inject(uiApp);
             ctx.cameraCore.Inject(mainCamera, uiCamera);
             uiApp.Inject(ctx.assetsCore);
+            ctx.assetsCore.Inject(gameSettingSO);
 
             // ==== Pre Init ====
             ctx.cameraCore.Init();

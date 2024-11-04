@@ -11,14 +11,23 @@ namespace NJM {
 
     public class AssetsCore {
 
+        // ==== GameSettting ====
+        public GameSettingSO gameSettingSO;
+
+        // ==== Entity ====
         Dictionary<string, GameObject> entityPrefabs;
         AsyncOperationHandle<IList<GameObject>> entityPrefabHandle;
 
+        // ==== UI ====
+        Dictionary<string, GameObject> panelPrefabs;
+        AsyncOperationHandle<IList<GameObject>> panelPrefabHandle;
+
+        // ==== So ====
         Dictionary<int, RoleSO> so_roles;
         AsyncOperationHandle<IList<RoleSO>> so_rolesHandle;
 
-        Dictionary<string, GameObject> panelPrefabs;
-        AsyncOperationHandle<IList<GameObject>> panelPrefabHandle;
+        Dictionary<StageSignature, StageSO> so_stages;
+        AsyncOperationHandle<IList<StageSO>> so_stagesHandle;
 
         public AssetsCore() {
             
@@ -26,7 +35,12 @@ namespace NJM {
             panelPrefabs = new Dictionary<string, GameObject>();
 
             so_roles = new Dictionary<int, RoleSO>();
+            so_stages = new Dictionary<StageSignature, StageSO>();
 
+        }
+
+        public void Inject(GameSettingSO gameSettingSO) {
+            this.gameSettingSO = gameSettingSO;
         }
 
         public async Task LoadAll() {
@@ -56,6 +70,15 @@ namespace NJM {
                     so_roles.Add(so.tm.typeID, so);
                 }
             }
+
+            {
+                // - SO Stage
+                so_stagesHandle = Addressables.LoadAssetsAsync<StageSO>(AssetsLabelConst.SO_STAGE, null);
+                await so_stagesHandle.Task;
+                foreach (var so in so_stagesHandle.Result) {
+                    so_stages.Add(so.tm.stageSignature, so);
+                }
+            }
         }
 
         public void UnloadAll() {
@@ -69,6 +92,10 @@ namespace NJM {
 
             if (so_rolesHandle.IsValid()) {
                 Addressables.Release(so_rolesHandle);
+            }
+
+            if (so_stagesHandle.IsValid()) {
+                Addressables.Release(so_stagesHandle);
             }
         }
 
@@ -85,6 +112,11 @@ namespace NJM {
         // ==== So Roles ====
         public bool So_Role_TryGet(int typeID, out RoleSO so) {
             return so_roles.TryGetValue(typeID, out so);
+        }
+
+        // ==== So Stages ====
+        public bool So_Stage_TryGet(StageSignature stageSignature, out StageSO so) {
+            return so_stages.TryGetValue(stageSignature, out so);
         }
 
     }

@@ -23,11 +23,19 @@ namespace NJM.Domains {
         }
 
         static void Normal_Tick(GameContext ctx, RoleEntity role, float fixdt) {
+            var game = ctx.gameEntity;
             var inputCom = role.inputComponent;
             var attrCom = role.AttributeComponent;
+            var gameSetting = ctx.assetsCore.gameSettingSO.tm;
+            Vector2 cameraRotateSensitivity;
+            if (game.isFPSAiming) {
+                cameraRotateSensitivity = gameSetting.fps_rotationSpeed;
+            } else {
+                cameraRotateSensitivity = gameSetting.tps_rotationSpeed;
+            }
             RoleDomain.Physics_ManualTick(ctx, role, fixdt);
             RoleDomain.Locomotion_Move(ctx, role, inputCom.MoveAxis, attrCom.MoveSpeed);
-            RoleDomain.Locomotion_Rotate(ctx, role, inputCom.LookAxis, new Vector2(180, 90), fixdt);
+            RoleDomain.Locomotion_Rotate(ctx, role, inputCom.LookAxis, cameraRotateSensitivity, fixdt);
             RoleDomain.Locomotion_Jump(ctx, role, inputCom.IsJumpDown, attrCom.JumpForce);
             RoleDomain.Locomotion_Falling(ctx, role, attrCom.FallingG, attrCom.FallingMaxSpeed, fixdt);
         }

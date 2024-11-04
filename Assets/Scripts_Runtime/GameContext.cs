@@ -9,6 +9,7 @@ namespace NJM {
         public ProgramEntity programEntity;
 
         // ==== Entity Repository ====
+        public StageRepository stageRepository;
         public RoleRepository roleRepository;
 
         // ==== Cores ====
@@ -27,6 +28,7 @@ namespace NJM {
             gameEntity = new GameEntity();
             programEntity = new ProgramEntity();
 
+            stageRepository = new StageRepository();
             roleRepository = new RoleRepository();
 
             inputCore = new InputCore();
