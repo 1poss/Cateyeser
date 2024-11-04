@@ -8,6 +8,8 @@ namespace NJM.Domains {
         public static RoleEntity Spawn(GameContext ctx, int typeID, Vector3 pos, Vector3 face) {
             var role = GameFactory.Role_Create(ctx, typeID, pos, face);
 
+            RoleFSMDomain.Normal_Enter(ctx, role);
+            
             ctx.roleRepository.Add(role);
 
             return role;
@@ -42,7 +44,7 @@ namespace NJM.Domains {
             BoxCollider footCollider = role.Mod.logic_foot as BoxCollider;
             int layer = 1 << LayerConst.GROUND;
             int count = Physics.BoxCastNonAlloc(footCollider.transform.position, footCollider.size / 2, Vector3.down, tmp_footCheckHits, Quaternion.identity, 0.01f, layer);
-            if (count > 0 && role.moveComponent.Velocity().y < 0) {
+            if (count > 0 && role.MoveComponent.Velocity().y < 0) {
                 RoleDomain.Locomotion_Land(ctx, role);
             }
         }

@@ -21,6 +21,14 @@ namespace NJM.Controllers {
             // Bake Input
             var input = ctx.inputCore;
             ctx.gameEntity.isFPSAiming = input.IsFPSAiming;
+
+            var owner = ctx.Role_Owner();
+            if (owner != null) {
+                var inputComponent = owner.inputComponent;
+                inputComponent.MoveAxis_Set(input.MoveAxis);
+                inputComponent.LookAxis_Set(input.LookAxis);
+                inputComponent.IsJumpDown_Set(input.IsJumpDown);
+            }
         }
 
         public static void FixTick(GameContext ctx, float fixdt) {
@@ -28,11 +36,7 @@ namespace NJM.Controllers {
             var owner = ctx.Role_Owner();
             var input = ctx.inputCore;
             if (owner != null) {
-                RoleDomain.Physics_ManualTick(ctx, owner, fixdt);
-                RoleDomain.Locomotion_Move(ctx, owner, input.MoveAxis, 5);
-                RoleDomain.Locomotion_Rotate(ctx, owner, input.LookAxis, new Vector2(180, 90), fixdt);
-                RoleDomain.Locomotion_Jump(ctx, owner, input.IsJumpDown);
-                RoleDomain.Locomotion_Falling(ctx, owner, fixdt);
+                RoleFSMDomain.Tick(ctx, owner, fixdt);
             }
 
             Physics.Simulate(fixdt);

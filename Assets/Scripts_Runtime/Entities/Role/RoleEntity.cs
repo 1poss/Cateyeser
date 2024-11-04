@@ -13,12 +13,18 @@ namespace NJM {
         public RoleMod Mod => mod;
 
         public RoleInputComponent inputComponent;
-        public RoleMoveComponent moveComponent;
+        
+        RoleMoveComponent moveComponent;
+        public RoleMoveComponent MoveComponent => moveComponent;
+
+        RoleFSMComponent fsmComponent;
+        public RoleFSMComponent FSMComponent => fsmComponent;
 
         public void Ctor() {
 
             inputComponent = new RoleInputComponent();
             moveComponent = new RoleMoveComponent();
+            fsmComponent = new RoleFSMComponent();
 
             mod.Ctor();
             moveComponent.Inject(rb);
