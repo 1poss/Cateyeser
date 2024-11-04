@@ -16,6 +16,7 @@ namespace NJM {
         [SerializeField] Collider logic_bodyBox;
         [SerializeField] Collider logic_leftHand;
         [SerializeField] Collider logic_rightHand;
+        [SerializeField] public Collider logic_foot;
 
         public void Ctor() {
 

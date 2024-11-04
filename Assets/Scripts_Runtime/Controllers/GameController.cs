@@ -28,6 +28,7 @@ namespace NJM.Controllers {
             var owner = ctx.Role_Owner();
             var input = ctx.inputCore;
             if (owner != null) {
+                RoleDomain.Physics_ManualTick(ctx, owner, fixdt);
                 RoleDomain.Locomotion_Move(ctx, owner, input.MoveAxis, 5);
                 RoleDomain.Locomotion_Rotate(ctx, owner, input.LookAxis, new Vector2(180, 90), fixdt);
                 RoleDomain.Locomotion_Jump(ctx, owner, input.IsJumpDown);

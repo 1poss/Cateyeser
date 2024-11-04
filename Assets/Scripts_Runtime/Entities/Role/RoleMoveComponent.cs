@@ -21,6 +21,10 @@ namespace NJM {
             rb.linearVelocity = Vector3.zero;
         }
 
+        public Vector3 Velocity() {
+            return rb.linearVelocity;
+        }
+
         public void Land() {
             isGrounded = true;
         }

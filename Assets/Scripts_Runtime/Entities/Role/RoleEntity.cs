@@ -10,6 +10,8 @@ namespace NJM {
         [SerializeField] Rigidbody rb;
 
         [SerializeField] RoleMod mod;
+        public RoleMod Mod => mod;
+
         public RoleInputComponent inputComponent;
         public RoleMoveComponent moveComponent;
 
