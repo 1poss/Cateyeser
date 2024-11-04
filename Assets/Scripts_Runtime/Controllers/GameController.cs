@@ -6,7 +6,11 @@ namespace NJM.Controllers {
 
     public static class GameController {
 
-        public static void Enter(GameContext ctx) {
+        public static void Enter_FirstEnter(GameContext ctx, StageSignature stageSignature) {
+
+            // Stage
+            StageDomain.Spawn(ctx, stageSignature);
+
             // Role
             const int OWNER_TYPEID = 1;
             var role = RoleDomain.SpawnOwner(ctx, OWNER_TYPEID, new Vector3(5, 5, 5), Vector3.forward);

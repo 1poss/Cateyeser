@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace NJM {
@@ -7,7 +8,11 @@ namespace NJM {
 
         public StageSignature stageSignature;
 
-        public Terrain terrain;
+        public List<Terrain> terrains;
+
+        public StageEntity() {
+            terrains = new List<Terrain>(4);
+        }
 
     }
 

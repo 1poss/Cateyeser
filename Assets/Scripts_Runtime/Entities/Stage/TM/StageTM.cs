@@ -15,6 +15,7 @@ namespace NJM.Template {
         // - Camera Spawner
 
         // - Terrain Spawner
+        public TerrainSpawner[] terrainSpawners;
 
         // - Light Spawner
 

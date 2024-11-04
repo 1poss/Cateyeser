@@ -5,6 +5,31 @@ namespace NJM {
 
     public static class GameFactory {
 
+        public static StageEntity Stage_Create(GameContext ctx, StageSignature stageSignature) {
+            bool has = ctx.assetsCore.So_Stage_TryGet(stageSignature, out var so);
+            if (!has) {
+                Debug.LogError($"StageDomain.Spawn: StageSignature not found: {stageSignature}");
+                return null;
+            }
+
+            var tm = so.tm;
+
+            StageEntity stage = new StageEntity();
+            stage.stageSignature = stageSignature;
+
+            // - Terrain
+            var terrainSpawners = tm.terrainSpawners;
+            for (int i = 0; i < terrainSpawners.Length; i += 1) {
+                var spawner = terrainSpawners[i];
+                var terrain = Terrain.CreateTerrainGameObject(spawner.terrainData);
+                terrain.transform.position = spawner.pos;
+                stage.terrains.Add(terrain.GetComponent<Terrain>());
+            }
+
+            return stage;
+
+        }
+
         public static RoleEntity Role_Create(GameContext ctx, int typeID, AllyStatus allyStatus, Vector3 pos, Vector3 face) {
 
             var prefab = ctx.assetsCore.Entity_RolePrefab();

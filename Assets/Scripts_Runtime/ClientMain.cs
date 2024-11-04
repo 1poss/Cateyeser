@@ -38,7 +38,7 @@ namespace NJM.MainEntry {
                 await ctx.assetsCore.LoadAll();
 
                 // ==== Enter ====
-                GameController.Enter(ctx);
+                GameController.Enter_FirstEnter(ctx, ctx.assetsCore.gameSettingSO.tm.startStage);
 
                 var program = ctx.programEntity;
                 program.isInit = true;
