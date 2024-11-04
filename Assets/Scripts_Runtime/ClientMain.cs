@@ -6,14 +6,22 @@ namespace NJM.MainEntry {
 
     public class ClientMain : MonoBehaviour {
 
+        [SerializeField] Camera mainCamera;
+        [SerializeField] Camera uiCamera;
+
         GameContext ctx;
 
         void Awake() {
 
             // ==== Ctor ====
             ctx = new GameContext();
+            var uiApp = GetComponent<UIApp>();
+            uiApp.Ctor();
 
             // ==== Inject ====
+            ctx.Inject(uiApp);
+            ctx.cameraCore.Inject(mainCamera, uiCamera);
+            uiApp.Inject(ctx.assetsCore);
 
             // ==== Pre Init ====
             ctx.cameraCore.Init();

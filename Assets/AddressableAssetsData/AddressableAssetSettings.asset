@@ -60,6 +60,7 @@ MonoBehaviour:
   m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
   m_GroupAssets:
   - {fileID: 0}
+  - {fileID: 11400000, guid: f7d1c8885f492c34592cd4b551b75c7d, type: 2}
   - {fileID: 11400000, guid: 710976db868f86d43b1505166be8c001, type: 2}
   - {fileID: 11400000, guid: 7b5b45abb66a0844a8b54b09ed223cf1, type: 2}
   m_BuildSettings:
@@ -102,6 +103,7 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - Entity
+    - UI_Panel
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 8771a4f40fea80942b00ec8e7e5a282a, type: 2}

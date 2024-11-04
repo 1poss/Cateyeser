@@ -7,7 +7,14 @@ namespace NJM.Controllers {
     public static class GameController {
 
         public static void Enter(GameContext ctx) {
+            // Role
             var role = RoleDomain.SpawnOwner(ctx, 1, new Vector3(5, 5, 5), Vector3.forward);
+
+            // Camera
+
+            // UI
+            ctx.uiApp.Panel_AimIndicator_Open();
+
         }
 
         public static void PreTick(GameContext ctx, float dt) {

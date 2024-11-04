@@ -8,6 +8,7 @@ namespace NJM {
     public class CameraCore {
 
         Camera mainCam;
+        Camera uiCam;
 
         CameraContext ctx;
 
@@ -18,8 +19,12 @@ namespace NJM {
             ctx = new CameraContext();
         }
 
+        public void Inject(Camera mainCam, Camera uiCam) {
+            this.mainCam = mainCam;
+            this.uiCam = uiCam;
+        }
+
         public void Init() {
-            mainCam = Camera.main;
             SpawnFPS();
             SpawnTPS();
         }

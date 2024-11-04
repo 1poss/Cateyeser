@@ -16,6 +16,9 @@ namespace NJM {
         public AssetsCore assetsCore;
         public CameraCore cameraCore;
 
+        // ==== Applications ====
+        public UIApp uiApp;
+
         // ==== Services ====
         public IDService idService;
 
@@ -32,6 +35,10 @@ namespace NJM {
 
             idService = new IDService();
 
+        }
+
+        public void Inject(UIApp uiApp) {
+            this.uiApp = uiApp;
         }
 
         public RoleEntity Role_Owner() {
