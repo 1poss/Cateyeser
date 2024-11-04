@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using Cateyeser.CoreAssets.Internal;
+using NJM.CoreAssets.Internal;
 
-namespace Cateyeser {
+namespace NJM {
 
     public class AssetsCore {
 

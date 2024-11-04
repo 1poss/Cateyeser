@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
-using Cateyeser.Domains;
+using NJM.Domains;
 
-namespace Cateyeser.Controllers {
+namespace NJM.Controllers {
 
     public static class GameController {
 

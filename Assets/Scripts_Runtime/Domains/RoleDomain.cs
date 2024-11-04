@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Cateyeser.Domains {
+namespace NJM.Domains {
 
     public static class RoleDomain {
 
@@ -14,7 +14,7 @@ namespace Cateyeser.Domains {
         }
 
         public static void Move(GameContext ctx, RoleEntity role, Vector2 moveAxis, float speed) {
-            Vector3 moveDir = ctx.cameraCore.GetMoveForwardDir(moveAxis);
+            Vector3 moveDir = ctx.cameraCore.Input_GetMoveForwardDir(moveAxis);
             role.Move_HorizontalByVelocity(moveDir, speed);
         }
 

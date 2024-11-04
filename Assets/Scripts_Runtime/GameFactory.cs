@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Cateyeser {
+namespace NJM {
 
     public static class GameFactory {
 

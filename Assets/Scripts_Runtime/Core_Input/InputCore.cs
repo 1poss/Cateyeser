@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Cateyeser.CoreInput.Internal;
+using NJM.CoreInput.Internal;
 
-namespace Cateyeser {
+namespace NJM {
 
     public class InputCore {
 

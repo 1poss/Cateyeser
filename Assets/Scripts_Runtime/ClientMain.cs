@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
-using Cateyeser.Controllers;
+using NJM.Controllers;
 
-namespace Cateyeser.MainEntry {
+namespace NJM.MainEntry {
 
     public class ClientMain : MonoBehaviour {
 

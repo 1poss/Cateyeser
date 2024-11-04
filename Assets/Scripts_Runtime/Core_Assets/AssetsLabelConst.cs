@@ -1,6 +1,6 @@
 using System;
 
-namespace Cateyeser.CoreAssets.Internal {
+namespace NJM.CoreAssets.Internal {
 
     public static class AssetsLabelConst {
 

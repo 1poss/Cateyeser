@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Cateyeser {
+namespace NJM {
 
     public class RoleRepository {
 

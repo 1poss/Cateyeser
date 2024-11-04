@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace Cateyeser.CoreInput.Internal
+namespace NJM.CoreInput.Internal
 {
     public partial class @InputActions: IInputActionCollection2, IDisposable
     {
@@ -51,7 +51,7 @@ namespace Cateyeser.CoreInput.Internal
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""6c2ab1b8-8984-453a-af3d-a3c78ae1679a"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -516,7 +516,7 @@ namespace Cateyeser.CoreInput.Internal
                     ""name"": ""Submit"",
                     ""type"": ""Button"",
                     ""id"": ""7607c7b6-cd76-4816-beef-bd0341cfe950"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -525,7 +525,7 @@ namespace Cateyeser.CoreInput.Internal
                     ""name"": ""Cancel"",
                     ""type"": ""Button"",
                     ""id"": ""15cef263-9014-4fd5-94d9-4e4a6234a6ef"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -865,7 +865,7 @@ namespace Cateyeser.CoreInput.Internal
                     ""path"": ""*/{Submit}"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse;Gamepad;Touch;Joystick;XR"",
+                    ""groups"": ""Keyboard&Mouse;Gamepad;Touch;XR;Joystick"",
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1072,6 +1072,28 @@ namespace Cateyeser.CoreInput.Internal
             ""devices"": [
                 {
                     ""devicePath"": ""<XRController>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""XBox"",
+            ""bindingGroup"": ""XBox"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<XInputController>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PS"",
+            ""bindingGroup"": ""PS"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<DualShockGamepad>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
@@ -1436,6 +1458,24 @@ namespace Cateyeser.CoreInput.Internal
             {
                 if (m_XRSchemeIndex == -1) m_XRSchemeIndex = asset.FindControlSchemeIndex("XR");
                 return asset.controlSchemes[m_XRSchemeIndex];
+            }
+        }
+        private int m_XBoxSchemeIndex = -1;
+        public InputControlScheme XBoxScheme
+        {
+            get
+            {
+                if (m_XBoxSchemeIndex == -1) m_XBoxSchemeIndex = asset.FindControlSchemeIndex("XBox");
+                return asset.controlSchemes[m_XBoxSchemeIndex];
+            }
+        }
+        private int m_PSSchemeIndex = -1;
+        public InputControlScheme PSScheme
+        {
+            get
+            {
+                if (m_PSSchemeIndex == -1) m_PSSchemeIndex = asset.FindControlSchemeIndex("PS");
+                return asset.controlSchemes[m_PSSchemeIndex];
             }
         }
         public interface IPlayerActions
