@@ -24,11 +24,12 @@ namespace NJM.Domains {
 
         static void Normal_Tick(GameContext ctx, RoleEntity role, float fixdt) {
             var inputCom = role.inputComponent;
+            var attrCom = role.AttributeComponent;
             RoleDomain.Physics_ManualTick(ctx, role, fixdt);
-            RoleDomain.Locomotion_Move(ctx, role, inputCom.MoveAxis, 5);
+            RoleDomain.Locomotion_Move(ctx, role, inputCom.MoveAxis, attrCom.MoveSpeed);
             RoleDomain.Locomotion_Rotate(ctx, role, inputCom.LookAxis, new Vector2(180, 90), fixdt);
-            RoleDomain.Locomotion_Jump(ctx, role, inputCom.IsJumpDown);
-            RoleDomain.Locomotion_Falling(ctx, role, fixdt);
+            RoleDomain.Locomotion_Jump(ctx, role, inputCom.IsJumpDown, attrCom.JumpForce);
+            RoleDomain.Locomotion_Falling(ctx, role, attrCom.FallingG, attrCom.FallingMaxSpeed, fixdt);
         }
     }
 }

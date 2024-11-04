@@ -6,16 +6,21 @@ namespace NJM {
     public class RoleEntity : MonoBehaviour {
 
         public int id;
+        public int typeID;
+        public string typeName;
 
         [SerializeField] Rigidbody rb;
 
-        [SerializeField] RoleMod mod;
+        RoleMod mod;
         public RoleMod Mod => mod;
 
         public RoleInputComponent inputComponent;
-        
+
         RoleMoveComponent moveComponent;
         public RoleMoveComponent MoveComponent => moveComponent;
+
+        RoleAttributeComponent attributeComponent;
+        public RoleAttributeComponent AttributeComponent => attributeComponent;
 
         RoleFSMComponent fsmComponent;
         public RoleFSMComponent FSMComponent => fsmComponent;
@@ -24,11 +29,16 @@ namespace NJM {
 
             inputComponent = new RoleInputComponent();
             moveComponent = new RoleMoveComponent();
+            attributeComponent = new RoleAttributeComponent();
+
             fsmComponent = new RoleFSMComponent();
 
-            mod.Ctor();
             moveComponent.Inject(rb);
 
+        }
+
+        public void Inject(RoleMod mod) {
+            this.mod = mod;
         }
 
         public Vector3 TF_Pos() {

@@ -8,11 +8,15 @@ namespace NJM.Controllers {
 
         public static void Enter(GameContext ctx) {
             // Role
-            var role = RoleDomain.SpawnOwner(ctx, 1, new Vector3(5, 5, 5), Vector3.forward);
+            const int OWNER_TYPEID = 1;
+            var role = RoleDomain.SpawnOwner(ctx, OWNER_TYPEID, new Vector3(5, 5, 5), Vector3.forward);
 
             // Camera
 
             // UI
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
             ctx.uiApp.Panel_AimIndicator_Open();
 
         }
@@ -53,9 +57,9 @@ namespace NJM.Controllers {
 
                 if (game.isFPSAiming) {
                     // Camera: FPS
-                    const float MULTIPLIER = 2;
+                    float fpsAimMultiplier = owner.AttributeComponent.FpsAimMultiplier;
                     CameraFollowSingleArgs args;
-                    args.targetPos = owner.TF_Pos() + owner.TF_Forward() * MULTIPLIER; // TODO: 射线检测, 防穿墙
+                    args.targetPos = owner.TF_Pos() + owner.TF_Forward() * fpsAimMultiplier;
                     args.targetForward = owner.TF_Forward();
                     _ = ctx.cameraCore.Follow_Tick(CameraCore.fpID, args, dt);
                 } else {

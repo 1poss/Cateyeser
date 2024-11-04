@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9372fd100b02e408bd5a0d060ff591, type: 3}
+  m_Name: So_Role_1_Cateyeser
+  m_EditorClassIdentifier: 
+  tm:
+    typeID: 1
+    typeName: "\u732B\u773C"
+    modPrefab: {fileID: 2317477763023318772, guid: c9814c4f57de0234494ad6bcb92785cc, type: 3}
+    moveSpeed: 5.5
+    jumpForce: 100
+    fallingG: 9.8
+    fallingMaxSpeed: 40
+    fpsAimMultiplier: 3

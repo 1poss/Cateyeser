@@ -58,15 +58,12 @@ namespace NJM.Domains {
             role.Rotate(lookAxis, sensitive, dt);
         }
 
-        public static void Locomotion_Jump(GameContext ctx, RoleEntity role, bool isJumpDown) {
-            const float JUMP_FORCE = 100;
-            role.Jump(isJumpDown, JUMP_FORCE);
+        public static void Locomotion_Jump(GameContext ctx, RoleEntity role, bool isJumpDown, float jumpForce) {
+            role.Jump(isJumpDown, jumpForce);
         }
 
-        public static void Locomotion_Falling(GameContext ctx, RoleEntity role, float fixdt) {
-            const float G = 9.8f;
-            const float MAX_FALLING_SPEED = 40;
-            role.Falling(G, MAX_FALLING_SPEED, fixdt);
+        public static void Locomotion_Falling(GameContext ctx, RoleEntity role, float fallingG, float fallingMaxSpeed, float fixdt) {
+            role.Falling(fallingG, fallingMaxSpeed, fixdt);
         }
 
         static void Locomotion_Land(GameContext ctx, RoleEntity role) {
