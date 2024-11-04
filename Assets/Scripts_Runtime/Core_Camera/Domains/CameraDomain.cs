@@ -16,6 +16,10 @@ namespace NJM.CoreCamera.Internal {
                 var pos = ApplyOnlyFollow(entity, args, dt);
                 entity.pos = pos;
                 res.pos = pos;
+            } else if (followType == CameraFollowType.FollowAndRound) {
+                var pos = ApplyFollowAndRound(entity, args, dt);
+                entity.pos = pos;
+                res.pos = pos;
             }
 
             return res;
@@ -44,8 +48,37 @@ namespace NJM.CoreCamera.Internal {
                 res = target_pos;
             }
 
+            // Offset
+            res += entity.followOffset;
+
+            // TODO: Easing
+
             return res;
 
+        }
+
+        static Vector3 ApplyFollowAndRound(CameraEntity entity, CameraFollowSingleArgs args, float dt) {
+
+            Vector3 res = Vector3.zero;
+
+            // Current Info
+            Vector3 cur_pos = entity.pos;
+            Vector3 cur_forward = entity.forward;
+
+            // Target Info
+            Vector3 target_pos = args.targetPos;
+            Vector3 target_forward = args.targetForward;
+
+            // Follow
+            Vector3 dir_n = -target_forward;
+
+            Vector3 finalPos = target_pos + dir_n * entity.followOffset.z;
+
+            // TODO: Easing
+
+            res = finalPos;
+
+            return res;
         }
 
     }

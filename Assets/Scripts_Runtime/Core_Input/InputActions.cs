@@ -109,6 +109,15 @@ namespace NJM.CoreInput.Internal
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FPSAim"",
+                    ""type"": ""Button"",
+                    ""id"": ""b3979cc5-bc41-47d8-ba05-171d9112a62b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -494,6 +503,28 @@ namespace NJM.CoreInput.Internal
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65f36e1a-bc65-462e-8b53-df51835d4958"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""FPSAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2dc6bc83-280f-4887-86c0-d96deb157607"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""FPSAim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1112,6 +1143,7 @@ namespace NJM.CoreInput.Internal
             m_Player_Previous = m_Player.FindAction("Previous", throwIfNotFound: true);
             m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+            m_Player_FPSAim = m_Player.FindAction("FPSAim", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1200,6 +1232,7 @@ namespace NJM.CoreInput.Internal
         private readonly InputAction m_Player_Previous;
         private readonly InputAction m_Player_Next;
         private readonly InputAction m_Player_Sprint;
+        private readonly InputAction m_Player_FPSAim;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
@@ -1213,6 +1246,7 @@ namespace NJM.CoreInput.Internal
             public InputAction @Previous => m_Wrapper.m_Player_Previous;
             public InputAction @Next => m_Wrapper.m_Player_Next;
             public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+            public InputAction @FPSAim => m_Wrapper.m_Player_FPSAim;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1249,6 +1283,9 @@ namespace NJM.CoreInput.Internal
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @FPSAim.started += instance.OnFPSAim;
+                @FPSAim.performed += instance.OnFPSAim;
+                @FPSAim.canceled += instance.OnFPSAim;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1280,6 +1317,9 @@ namespace NJM.CoreInput.Internal
                 @Sprint.started -= instance.OnSprint;
                 @Sprint.performed -= instance.OnSprint;
                 @Sprint.canceled -= instance.OnSprint;
+                @FPSAim.started -= instance.OnFPSAim;
+                @FPSAim.performed -= instance.OnFPSAim;
+                @FPSAim.canceled -= instance.OnFPSAim;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1489,6 +1529,7 @@ namespace NJM.CoreInput.Internal
             void OnPrevious(InputAction.CallbackContext context);
             void OnNext(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
+            void OnFPSAim(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

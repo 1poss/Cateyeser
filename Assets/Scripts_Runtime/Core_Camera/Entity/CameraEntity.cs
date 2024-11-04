@@ -12,6 +12,7 @@ namespace NJM.CoreCamera.Internal {
         public float fov;
 
         public CameraFollowType followType;
+        public Vector3 followOffset;
         public float follow_speed;
 
     }

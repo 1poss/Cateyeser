@@ -99,15 +99,17 @@ namespace NJM {
             return res;
         }
 
-        public void Follow_Single_Start(int id, CameraFollowType followType, Vector3 targetStartPos, Vector3 targetStartForward, float followSpeed) {
+        public void Follow_Single_Start(int id, CameraFollowType followType, Vector3 targetStartPos, Vector3 targetStartForward, Vector3 followOffset, float followSpeed) {
             CameraEntity entity = ctx.repository.Get(id);
             if (entity == null) {
                 Debug.LogWarning($"CameraEntity {id} not found");
                 return;
             }
-            entity.followType = followType;
             entity.pos = targetStartPos;
             entity.forward = targetStartForward;
+
+            entity.followType = followType;
+            entity.followOffset = followOffset;
             entity.follow_speed = followSpeed;
         }
 

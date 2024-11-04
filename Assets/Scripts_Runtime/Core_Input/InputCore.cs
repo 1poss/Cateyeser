@@ -15,6 +15,9 @@ namespace NJM {
         Vector2 lookAxis;
         public Vector2 LookAxis => lookAxis;
 
+        bool isFPSAiming;
+        public bool IsFPSAiming => isFPSAiming;
+
         public InputCore() {
             inputActions = new InputActions();
         }
@@ -30,6 +33,10 @@ namespace NJM {
 
             {
                 lookAxis = inputActions.Player.Look.ReadValue<Vector2>();
+            }
+
+            {
+                isFPSAiming = inputActions.Player.FPSAim.WasPerformedThisFrame();
             }
         }
 

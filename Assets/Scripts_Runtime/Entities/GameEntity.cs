@@ -6,6 +6,7 @@ namespace NJM {
 
         // ==== Owner ====
         public int ownerRoleID;
+        public bool isFPSAiming;
 
         // ==== Camera ====
         public int firstPersonCameraID;
@@ -13,6 +14,8 @@ namespace NJM {
 
         public GameEntity() {
             ownerRoleID = 0;
+            isFPSAiming = false;
+
             firstPersonCameraID = 1;
             thirdPersonCameraID = 2;
         }

@@ -17,8 +17,17 @@ namespace NJM.Domains {
             var role = Spawn(ctx, typeID, pos, face);
             ctx.gameEntity.ownerRoleID = role.id;
 
-            // Camera
-            ctx.cameraCore.Follow_Single_Start(CameraCore.fpID, CameraFollowType.OnlyFollow, role.TF_Pos(), role.TF_Forward(), 100);
+            // Camera: FPS
+            {
+                Vector3 followOffset = new Vector3(0, 0, 0);
+                ctx.cameraCore.Follow_Single_Start(CameraCore.fpID, CameraFollowType.OnlyFollow, role.TF_Pos(), role.TF_Forward(), followOffset, 100);
+            }
+
+            // Camera: TPS
+            {
+                Vector3 followOffset = new Vector3(0, 2, 10);
+                ctx.cameraCore.Follow_Single_Start(CameraCore.tpID, CameraFollowType.FollowAndRound, role.TF_Pos(), role.TF_Forward(), followOffset, 100);
+            }
 
             return role;
         }
