@@ -23,6 +23,19 @@ namespace NJM {
             return mod.Head_TF_Forward();
         }
 
+        public void Jump(bool isJumpDown, float jumpForce) {
+            if (isJumpDown) {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
+        }
+
+        public void Falling(float g, float maxFallingSpeed, float fixdt) {
+            Vector3 vel = rb.linearVelocity;
+            vel.y -= g * fixdt;
+            vel.y = Mathf.Max(vel.y, -maxFallingSpeed);
+            rb.linearVelocity = vel;
+        }
+
         public void Rotate(Vector2 lookAxis, Vector2 sensitive, float dt) {
             float x = lookAxis.x * sensitive.x * dt;
             float y = lookAxis.y * sensitive.y * dt;

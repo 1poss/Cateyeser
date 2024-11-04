@@ -28,8 +28,10 @@ namespace NJM.Controllers {
             var owner = ctx.Role_Owner();
             var input = ctx.inputCore;
             if (owner != null) {
-                RoleDomain.Move(ctx, owner, input.MoveAxis, 5);
-                RoleDomain.Rotate(ctx, owner, input.LookAxis, new Vector2(180, 90), fixdt);
+                RoleDomain.Locomotion_Move(ctx, owner, input.MoveAxis, 5);
+                RoleDomain.Locomotion_Rotate(ctx, owner, input.LookAxis, new Vector2(180, 90), fixdt);
+                RoleDomain.Locomotion_Jump(ctx, owner, input.IsJumpDown);
+                RoleDomain.Locomotion_Falling(ctx, owner, fixdt);
             }
 
             Physics.Simulate(fixdt);
@@ -52,7 +54,6 @@ namespace NJM.Controllers {
                     _ = ctx.cameraCore.Follow_Tick(CameraCore.fpID, args, dt);
                 } else {
                     // Camera: TPS
-                    Debug.Log("TPS");
                     CameraFollowSingleArgs args;
                     args.targetPos = owner.TF_Pos();
                     args.targetForward = owner.TF_Forward();

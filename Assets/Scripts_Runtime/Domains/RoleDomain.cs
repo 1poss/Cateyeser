@@ -32,13 +32,24 @@ namespace NJM.Domains {
             return role;
         }
 
-        public static void Move(GameContext ctx, RoleEntity role, Vector2 moveAxis, float speed) {
+        public static void Locomotion_Move(GameContext ctx, RoleEntity role, Vector2 moveAxis, float speed) {
             Vector3 moveDir = ctx.cameraCore.Input_GetMoveForwardDir(moveAxis);
             role.Move_HorizontalByVelocity(moveDir, speed);
         }
 
-        public static void Rotate(GameContext ctx, RoleEntity role, Vector2 lookAxis, Vector2 sensitive, float dt) {
+        public static void Locomotion_Rotate(GameContext ctx, RoleEntity role, Vector2 lookAxis, Vector2 sensitive, float dt) {
             role.Rotate(lookAxis, sensitive, dt);
+        }
+
+        public static void Locomotion_Jump(GameContext ctx, RoleEntity role, bool isJumpDown) {
+            const float JUMP_FORCE = 100;
+            role.Jump(isJumpDown, JUMP_FORCE);
+        }
+
+        public static void Locomotion_Falling(GameContext ctx, RoleEntity role, float fixdt) {
+            const float G = 9.8f;
+            const float MAX_FALLING_SPEED = 40;
+            role.Falling(G, MAX_FALLING_SPEED, fixdt);
         }
 
     }

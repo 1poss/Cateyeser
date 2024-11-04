@@ -12,6 +12,9 @@ namespace NJM {
         Vector2 moveAxis;
         public Vector2 MoveAxis => moveAxis;
 
+        bool isJumpDown;
+        public bool IsJumpDown => isJumpDown;
+
         Vector2 lookAxis;
         public Vector2 LookAxis => lookAxis;
 
@@ -27,14 +30,22 @@ namespace NJM {
         }
 
         public void Tick(float dt) {
+            // Move
             {
                 moveAxis = inputActions.Player.Move.ReadValue<Vector2>();
             }
 
+            // Jump
+            {
+                isJumpDown = inputActions.Player.Jump.WasPressedThisFrame();
+            }
+
+            // Look
             {
                 lookAxis = inputActions.Player.Look.ReadValue<Vector2>();
             }
 
+            // FPSAim
             {
                 isFPSAiming = inputActions.Player.FPSAim.WasPerformedThisFrame();
             }
