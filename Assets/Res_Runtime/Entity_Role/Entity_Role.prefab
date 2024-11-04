@@ -75,6 +75,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   rb: {fileID: 6223424569285172831}
+  root: {fileID: 1718465579016490416}
+  body: {fileID: 727524530838586382}
 --- !u!1 &4287511445264438023
 GameObject:
   m_ObjectHideFlags: 0

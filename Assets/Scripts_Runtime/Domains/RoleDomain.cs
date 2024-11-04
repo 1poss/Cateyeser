@@ -28,6 +28,10 @@ namespace NJM.Domains {
             role.Move_HorizontalByVelocity(moveDir, speed);
         }
 
+        public static void Rotate(GameContext ctx, RoleEntity role, Vector2 lookAxis, Vector2 sensitive, float dt) {
+            role.Rotate(lookAxis, sensitive, dt);
+        }
+
     }
 
 }

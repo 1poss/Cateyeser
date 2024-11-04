@@ -12,6 +12,9 @@ namespace NJM {
         Vector2 moveAxis;
         public Vector2 MoveAxis => moveAxis;
 
+        Vector2 lookAxis;
+        public Vector2 LookAxis => lookAxis;
+
         public InputCore() {
             inputActions = new InputActions();
         }
@@ -23,6 +26,10 @@ namespace NJM {
         public void Tick(float dt) {
             {
                 moveAxis = inputActions.Player.Move.ReadValue<Vector2>();
+            }
+
+            {
+                lookAxis = inputActions.Player.Look.ReadValue<Vector2>();
             }
         }
 

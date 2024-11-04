@@ -20,6 +20,7 @@ namespace NJM.Controllers {
             var input = ctx.inputCore;
             if (owner != null) {
                 RoleDomain.Move(ctx, owner, input.MoveAxis, 5);
+                RoleDomain.Rotate(ctx, owner, input.LookAxis, new Vector2(180, 90), fixdt);
             }
 
             Physics.Simulate(fixdt);
@@ -28,13 +29,17 @@ namespace NJM.Controllers {
 
         public static void LateTick(GameContext ctx, float dt) {
 
+            var input = ctx.inputCore;
+
             var owner = ctx.Role_Owner();
             if (owner != null) {
-                // Camera
+
+                // Camera: Follow
                 CameraFollowSingleArgs args;
                 args.targetPos = owner.TF_Pos();
                 args.targetForward = owner.TF_Forward();
                 _ = ctx.cameraCore.Follow_Tick(CameraCore.fpID, args, dt);
+
             }
 
         }

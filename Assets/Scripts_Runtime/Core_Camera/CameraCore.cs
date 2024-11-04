@@ -57,6 +57,25 @@ namespace NJM {
 
         }
 
+        public void Rotate(int id, Vector2 lookAxis, Vector2 sensitive, float dt) {
+            CameraEntity entity = ctx.repository.Get(id);
+            if (entity == null) {
+                Debug.LogWarning($"CameraEntity {id} not found");
+                return;
+            }
+
+            if (lookAxis == Vector2.zero) {
+                return;
+            }
+
+            float x = lookAxis.x * sensitive.x * dt;
+            float y = lookAxis.y * sensitive.y * dt;
+            entity.forward = Quaternion.AngleAxis(x, Vector3.up) * entity.forward;
+            entity.forward = Quaternion.AngleAxis(y, mainCam.transform.right) * entity.forward;
+            // TODO: Reverse Y
+            // TODO: Y Limit
+        }
+
         public CameraResultArgs Follow_Tick(int id, CameraFollowSingleArgs followSingleArgs, float dt) {
             CameraResultArgs res = new CameraResultArgs();
 
