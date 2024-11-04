@@ -47,7 +47,7 @@ namespace NJM {
 
             // FPSAim
             {
-                isFPSAiming = inputActions.Player.FPSAim.WasPerformedThisFrame();
+                isFPSAiming = inputActions.Player.FPSAim.ReadValue<float>() > 0;
             }
         }
 

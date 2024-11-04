@@ -112,12 +112,12 @@ namespace NJM.CoreInput.Internal
                 },
                 {
                     ""name"": ""FPSAim"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""b3979cc5-bc41-47d8-ba05-171d9112a62b"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
