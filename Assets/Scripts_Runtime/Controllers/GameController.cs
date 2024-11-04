@@ -53,8 +53,9 @@ namespace NJM.Controllers {
 
                 if (game.isFPSAiming) {
                     // Camera: FPS
+                    const float MULTIPLIER = 2;
                     CameraFollowSingleArgs args;
-                    args.targetPos = owner.TF_Pos();
+                    args.targetPos = owner.TF_Pos() + owner.TF_Forward() * MULTIPLIER; // TODO: 射线检测, 防穿墙
                     args.targetForward = owner.TF_Forward();
                     _ = ctx.cameraCore.Follow_Tick(CameraCore.fpID, args, dt);
                 } else {
