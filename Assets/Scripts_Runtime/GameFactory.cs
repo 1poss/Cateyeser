@@ -5,7 +5,7 @@ namespace NJM {
 
     public static class GameFactory {
 
-        public static RoleEntity Role_Create(GameContext ctx, int typeID, Vector3 pos, Vector3 face) {
+        public static RoleEntity Role_Create(GameContext ctx, int typeID, AllyStatus allyStatus, Vector3 pos, Vector3 face) {
 
             var prefab = ctx.assetsCore.Entity_RolePrefab();
             var go = GameObject.Instantiate(prefab, pos, Quaternion.LookRotation(face));
@@ -28,6 +28,7 @@ namespace NJM {
             role.id = ctx.idService.PickRoleID();
             role.typeID = tm.typeID;
             role.typeName = tm.typeName;
+            role.allyStatus = allyStatus;
 
             var attrCom = role.AttributeComponent;
             attrCom.SetMoveSpeed(tm.moveSpeed);

@@ -5,8 +5,8 @@ namespace NJM.Domains {
 
     public static class RoleDomain {
 
-        public static RoleEntity Spawn(GameContext ctx, int typeID, Vector3 pos, Vector3 face) {
-            var role = GameFactory.Role_Create(ctx, typeID, pos, face);
+        public static RoleEntity Spawn(GameContext ctx, int typeID, AllyStatus allyStatus, Vector3 pos, Vector3 face) {
+            var role = GameFactory.Role_Create(ctx, typeID, allyStatus, pos, face);
 
             RoleFSMDomain.Normal_Enter(ctx, role);
             
@@ -16,7 +16,7 @@ namespace NJM.Domains {
         }
 
         public static RoleEntity SpawnOwner(GameContext ctx, int typeID, Vector3 pos, Vector3 face) {
-            var role = Spawn(ctx, typeID, pos, face);
+            var role = Spawn(ctx, typeID, AllyStatus.Player, pos, face);
             ctx.gameEntity.ownerRoleID = role.id;
 
             // Camera: FPS
