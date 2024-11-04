@@ -7,8 +7,7 @@ namespace NJM.Controllers {
     public static class GameController {
 
         public static void Enter(GameContext ctx) {
-            var role = RoleDomain.Spawn(ctx, 1, new Vector3(5, 5, 5), Vector3.forward);
-            ctx.gameEntity.ownerRoleID = role.id;
+            var role = RoleDomain.SpawnOwner(ctx, 1, new Vector3(5, 5, 5), Vector3.forward);
         }
 
         public static void PreTick(GameContext ctx, float dt) {
@@ -28,6 +27,15 @@ namespace NJM.Controllers {
         }
 
         public static void LateTick(GameContext ctx, float dt) {
+
+            var owner = ctx.Role_Owner();
+            if (owner != null) {
+                // Camera
+                CameraFollowSingleArgs args;
+                args.targetPos = owner.TF_Pos();
+                args.targetForward = owner.TF_Forward();
+                _ = ctx.cameraCore.Follow_Tick(CameraCore.fpID, args, dt);
+            }
 
         }
 

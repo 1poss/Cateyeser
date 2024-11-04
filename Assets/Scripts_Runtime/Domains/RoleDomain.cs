@@ -13,6 +13,16 @@ namespace NJM.Domains {
             return role;
         }
 
+        public static RoleEntity SpawnOwner(GameContext ctx, int typeID, Vector3 pos, Vector3 face) {
+            var role = Spawn(ctx, typeID, pos, face);
+            ctx.gameEntity.ownerRoleID = role.id;
+
+            // Camera
+            ctx.cameraCore.Follow_Single_Start(CameraCore.fpID, CameraFollowType.OnlyFollow, role.TF_Pos(), role.TF_Forward(), 100);
+
+            return role;
+        }
+
         public static void Move(GameContext ctx, RoleEntity role, Vector2 moveAxis, float speed) {
             Vector3 moveDir = ctx.cameraCore.Input_GetMoveForwardDir(moveAxis);
             role.Move_HorizontalByVelocity(moveDir, speed);

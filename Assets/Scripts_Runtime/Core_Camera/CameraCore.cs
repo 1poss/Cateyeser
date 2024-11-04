@@ -67,6 +67,11 @@ namespace NJM {
             }
 
             res = CameraDomain.TickApply(ctx, entity, followSingleArgs, dt);
+
+            // Apply To Main
+            mainCam.transform.position = res.pos;
+            mainCam.transform.forward = res.forward;
+
             return res;
         }
 

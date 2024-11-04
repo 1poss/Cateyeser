@@ -13,6 +13,14 @@ namespace NJM {
 
         }
 
+        public Vector3 TF_Pos() {
+            return transform.position;
+        }
+
+        public Vector3 TF_Forward() {
+            return transform.forward;
+        }
+
         public void Move_HorizontalByVelocity(Vector3 moveDir, float speed) {
             float y = rb.linearVelocity.y;
             Vector3 vel = rb.linearVelocity;
