@@ -10,9 +10,17 @@ namespace NJM {
         [SerializeField] Rigidbody rb;
 
         [SerializeField] RoleMod mod;
+        public RoleInputComponent inputComponent;
+        public RoleMoveComponent moveComponent;
 
         public void Ctor() {
+
+            inputComponent = new RoleInputComponent();
+            moveComponent = new RoleMoveComponent();
+
             mod.Ctor();
+            moveComponent.Inject(rb);
+
         }
 
         public Vector3 TF_Pos() {
@@ -24,8 +32,9 @@ namespace NJM {
         }
 
         public void Jump(bool isJumpDown, float jumpForce) {
-            if (isJumpDown) {
+            if (isJumpDown && moveComponent.isGrounded) {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                moveComponent.LeaveGround();
             }
         }
 
@@ -34,6 +43,10 @@ namespace NJM {
             vel.y -= g * fixdt;
             vel.y = Mathf.Max(vel.y, -maxFallingSpeed);
             rb.linearVelocity = vel;
+        }
+
+        public void Land() {
+            moveComponent.Land();
         }
 
         public void Rotate(Vector2 lookAxis, Vector2 sensitive, float dt) {

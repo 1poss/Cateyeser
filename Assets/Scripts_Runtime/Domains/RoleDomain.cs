@@ -52,6 +52,10 @@ namespace NJM.Domains {
             role.Falling(G, MAX_FALLING_SPEED, fixdt);
         }
 
+        static void Locomotion_Land(GameContext ctx, RoleEntity role, float fixdt) {
+            role.Land();
+        }
+
     }
 
 }
