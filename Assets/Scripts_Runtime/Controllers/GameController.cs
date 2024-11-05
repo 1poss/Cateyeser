@@ -36,6 +36,11 @@ namespace NJM.Controllers {
                 inputComponent.MoveAxis_Set(input.MoveAxis);
                 inputComponent.LookAxis_Set(input.LookAxis);
                 inputComponent.IsJumpDown_Set(input.IsJumpDown);
+                inputComponent.IsFPSAiming_Set(input.IsFPSAiming);
+                inputComponent.MeleeAxis_Set(input.MeleeAxis);
+                inputComponent.Skill1Axis_Set(input.Skill1Axis);
+                inputComponent.Skill2Axis_Set(input.Skill2Axis);
+                inputComponent.Skill3Axis_Set(input.Skill3Axis);
             }
         }
 
