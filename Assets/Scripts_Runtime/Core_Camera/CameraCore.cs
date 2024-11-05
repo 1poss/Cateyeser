@@ -8,6 +8,7 @@ namespace NJM {
     public class CameraCore {
 
         Camera mainCam;
+        public Camera MainCam => mainCam;
         Camera uiCam;
 
         CameraContext ctx;

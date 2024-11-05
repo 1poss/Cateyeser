@@ -33,6 +33,9 @@ namespace NJM {
         RoleFSMComponent fsmComponent;
         public RoleFSMComponent FSMComponent => fsmComponent;
 
+        public bool hasAimHitPoint;
+        public Vector3 aimHitPoint;
+
         public void Ctor() {
 
             inputComponent = new RoleInputComponent();
@@ -49,6 +52,10 @@ namespace NJM {
 
         public void Inject(RoleMod mod) {
             this.mod = mod;
+        }
+
+        public bool IsOwner() {
+            return allyStatus == AllyStatus.Player;
         }
 
         public Vector3 TF_Pos() {

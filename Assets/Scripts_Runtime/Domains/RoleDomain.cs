@@ -38,12 +38,29 @@ namespace NJM.Domains {
 
         #region Physics
         public static void Physics_ManualTick(GameContext ctx, RoleEntity role, float fixdt) {
-            // Box Cast
-            Physics_FootCheck(ctx, role, fixdt);
+
+            if (role.IsOwner()) {
+                Physics_AimProcess(ctx, role);
+            }
+
+            Physics_FootProcess(ctx, role, fixdt);
+        }
+
+        static RaycastHit[] tmp_aimCheckHits = new RaycastHit[10];
+        static void Physics_AimProcess(GameContext ctx, RoleEntity role) {
+            var mainCam = ctx.cameraCore.MainCam;
+            int layer = 1 << LayerConst.GROUND | 1 << LayerConst.ROLE | 1 << LayerConst.BULLET;
+            int count = Physics.RaycastNonAlloc(mainCam.transform.position, mainCam.transform.forward, tmp_aimCheckHits, 100, layer);
+            if (count > 0) {
+                role.hasAimHitPoint = true;
+                role.aimHitPoint = tmp_aimCheckHits[0].point;
+            } else {
+                role.hasAimHitPoint = false;
+            }
         }
 
         static RaycastHit[] tmp_footCheckHits = new RaycastHit[10];
-        static void Physics_FootCheck(GameContext ctx, RoleEntity role, float fixdt) {
+        static void Physics_FootProcess(GameContext ctx, RoleEntity role, float fixdt) {
             BoxCollider footCollider = role.Mod.logic_foot as BoxCollider;
             int layer = 1 << LayerConst.GROUND;
             int count = Physics.BoxCastNonAlloc(footCollider.transform.position, footCollider.size / 2, Vector3.down, tmp_footCheckHits, Quaternion.identity, 0.01f, layer);
@@ -184,7 +201,13 @@ namespace NJM.Domains {
             // - Shoot Bullet
             if (action.hasShootBullet) {
                 Debug.Log($"RoleDomain.Skill_Action_Execute ShootBullet: {action.shootBulletSO.tm.typeName}");
-                Vector3 fwd = role.Mod.logic_muzzle.transform.forward;
+                Vector3 fwd;
+                if (role.hasAimHitPoint) {
+                    fwd = role.aimHitPoint - role.Mod.logic_muzzle.position;
+                    fwd.Normalize();
+                } else {
+                    fwd = role.Mod.logic_muzzle.transform.forward;
+                }
                 var bullet = BulletDomain.Spawn(ctx, action.shootBulletSO.tm.typeID, role.allyStatus, role.Mod.logic_muzzle.position, fwd);
             }
         }

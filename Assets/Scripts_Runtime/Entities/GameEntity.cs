@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace NJM {
 
@@ -6,11 +7,14 @@ namespace NJM {
 
         // ==== Owner ====
         public int ownerRoleID;
-        public bool isFPSAiming;
 
         // ==== Camera ====
         public int firstPersonCameraID;
         public int thirdPersonCameraID;
+
+        // ==== Aim ====
+        public bool isFPSAiming;
+        public Vector3 aimHitPoint;
 
         public GameEntity() {
             ownerRoleID = 0;
