@@ -117,9 +117,29 @@ namespace NJM.Domains {
                 inputCom.Skill3Axis_Reset();
             }
 
+            // Cancel
+            ref SkillSubEntity nextSkill = ref skill;
+            SkillCancelType cancelType = Skill_TryCancel(ctx, role, ref nextSkill);
+            if (cancelType == SkillCancelType.DisableCancel) {
+                // 禁止取消
+                return;
+            }
+
             // 释放技能
             Skill_Cast(ctx, role, skill);
 
+        }
+
+        public static SkillCancelType Skill_TryCancel(GameContext ctx, RoleEntity role, ref SkillSubEntity nextSkill) {
+            var skillStateCom = role.SkillStateComponent;
+            var currentAction = skillStateCom.GetCurrentAction();
+            if (currentAction == null) {
+                return SkillCancelType.NoSkillCasting;
+            }
+
+            // TODO: Cancel / Combo
+
+            return SkillCancelType.DisableCancel;
         }
 
         public static bool Skill_IsAllowCast(GameContext ctx, RoleEntity role, SkillSubEntity skill) {
@@ -129,6 +149,44 @@ namespace NJM.Domains {
 
         public static void Skill_Cast(GameContext ctx, RoleEntity role, SkillSubEntity skill) {
             Debug.Log($"RoleDomain.Skill_Cast {role.typeName} {skill.typeName}");
+            var skillStateCom = role.SkillStateComponent;
+            skillStateCom.CastBegin(skill);
+        }
+
+        public static void SkillState_Action_Execute(GameContext ctx, RoleEntity role, float fixdt) {
+
+            var skillStateCom = role.SkillStateComponent;
+
+            var currentAction = skillStateCom.GetCurrentAction();
+            if (currentAction == null) {
+                return;
+            }
+
+            ref int currentIndex = ref skillStateCom.currentSkillActionIndex;
+            ref int lastIndex = ref skillStateCom.lastSkillActionIndex;
+
+            if (currentIndex != lastIndex) {
+                // - Enter Action
+                Skill_Action_Act(ctx, role, skillStateCom.currentSkill, currentAction);
+                lastIndex = currentIndex;
+            } else {
+                // - Execute
+                currentAction.maintainTimer -= fixdt;
+                if (currentAction.maintainTimer <= 0) {
+                    // - Exit
+                    currentIndex += 1;
+                }
+            }
+
+        }
+
+        static void Skill_Action_Act(GameContext ctx, RoleEntity role, SkillSubEntity skill, SkillActionModel action) {
+            // - Shoot Bullet
+            if (action.hasShootBullet) {
+                Debug.Log($"RoleDomain.Skill_Action_Execute ShootBullet: {action.shootBulletSO.tm.typeName}");
+                Vector3 fwd = role.Mod.logic_muzzle.transform.forward;
+                var bullet = BulletDomain.Spawn(ctx, action.shootBulletSO.tm.typeID, role.allyStatus, role.Mod.logic_muzzle.position, fwd);
+            }
         }
         #endregion
 

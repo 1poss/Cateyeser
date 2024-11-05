@@ -16,4 +16,8 @@ MonoBehaviour:
     typeID: 1
     typeName: ShootTestBullet
     castKey: 1
-    actionTMs: []
+    actionTMs:
+    - maintainSec: 0.23333333
+      hasShootBullet: 1
+      shootBulletSO: {fileID: 11400000, guid: 23199f229ec8fd74491e90d2174d4626, type: 2}
+      anim_name: Shoot

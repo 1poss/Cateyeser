@@ -145,6 +145,17 @@ namespace NJM {
 
             skill.castKey = tm.castKey;
 
+            // - Actions
+            var actionTMs = tm.actionTMs;
+            if (actionTMs != null) {
+                for (int i = 0; i < actionTMs.Length; i += 1) {
+                    var actionTM = actionTMs[i];
+                    var action = new SkillActionModel();
+                    action.FromTM(actionTM);
+                    skill.actions.Add(action);
+                }
+            }
+
             return skill;
         }
         #endregion

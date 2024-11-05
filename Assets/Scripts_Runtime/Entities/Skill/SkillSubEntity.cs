@@ -14,6 +14,13 @@ namespace NJM {
         public SkillCastKey castKey;
         // 2. Cast Condition: MP, CD, Grounded, etc.
 
+        // ==== Actions ====
+        public List<SkillActionModel> actions;
+
+        public SkillSubEntity() {
+            actions = new List<SkillActionModel>(4);
+        }
+
     }
 
 }

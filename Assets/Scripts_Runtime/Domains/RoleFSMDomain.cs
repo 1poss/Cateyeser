@@ -39,6 +39,7 @@ namespace NJM.Domains {
             RoleDomain.Locomotion_Jump(ctx, role, inputCom.IsJumpDown, attrCom.JumpForce);
             RoleDomain.Locomotion_Falling(ctx, role, attrCom.FallingG, attrCom.FallingMaxSpeed, fixdt);
             RoleDomain.Skill_TryCast(ctx, role);
+            RoleDomain.SkillState_Action_Execute(ctx, role, fixdt);
         }
     }
 }

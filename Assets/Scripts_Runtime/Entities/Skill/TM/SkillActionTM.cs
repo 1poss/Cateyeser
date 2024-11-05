@@ -11,8 +11,10 @@ namespace NJM.Template {
         // interval
 
         // ==== Effector ====
-        // - 发射弹幕
         // - 发射子弹
+        public bool hasShootBullet;
+        public BulletSO shootBulletSO;
+
         // - Buff
         // - 闪现
         // - 动作

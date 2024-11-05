@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8875587268494351766, guid: 891d94b1a84d72c48a1f817f9a27a5b3, type: 3}
       propertyPath: m_Name
-      value: Mod_Bullet_Origin
+      value: Mod_Bullet_90000_Test
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
