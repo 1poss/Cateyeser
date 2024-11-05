@@ -32,6 +32,9 @@ namespace NJM {
         Dictionary<int, BulletSO> so_bullets;
         AsyncOperationHandle<IList<BulletSO>> so_bulletsHandle;
 
+        Dictionary<int, SkillSO> so_skills;
+        AsyncOperationHandle<IList<SkillSO>> so_skillsHandle;
+
         public AssetsCore() {
             
             entityPrefabs = new Dictionary<string, GameObject>();
@@ -40,6 +43,7 @@ namespace NJM {
             so_roles = new Dictionary<int, RoleSO>();
             so_stages = new Dictionary<StageSignature, StageSO>();
             so_bullets = new Dictionary<int, BulletSO>();
+            so_skills = new Dictionary<int, SkillSO>();
 
         }
 
@@ -92,6 +96,15 @@ namespace NJM {
                     so_bullets.Add(so.tm.typeID, so);
                 }
             }
+
+            {
+                // - SO Skill
+                so_skillsHandle = Addressables.LoadAssetsAsync<SkillSO>(AssetsLabelConst.SO_SKILL, null);
+                await so_skillsHandle.Task;
+                foreach (var so in so_skillsHandle.Result) {
+                    so_skills.Add(so.tm.typeID, so);
+                }
+            }
         }
 
         public void UnloadAll() {
@@ -109,6 +122,14 @@ namespace NJM {
 
             if (so_stagesHandle.IsValid()) {
                 Addressables.Release(so_stagesHandle);
+            }
+
+            if (so_bulletsHandle.IsValid()) {
+                Addressables.Release(so_bulletsHandle);
+            }
+
+            if (so_skillsHandle.IsValid()) {
+                Addressables.Release(so_skillsHandle);
             }
         }
 
@@ -139,6 +160,11 @@ namespace NJM {
         // ==== So Bullets ====
         public bool So_Bullet_TryGet(int typeID, out BulletSO so) {
             return so_bullets.TryGetValue(typeID, out so);
+        }
+
+        // ==== So Skills ====
+        public bool So_Skill_TryGet(int typeID, out SkillSO so) {
+            return so_skills.TryGetValue(typeID, out so);
         }
 
     }

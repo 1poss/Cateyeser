@@ -24,7 +24,7 @@ namespace NJM.Domains {
 
         static void Normal_Tick(GameContext ctx, RoleEntity role, float fixdt) {
             var game = ctx.gameEntity;
-            var inputCom = role.inputComponent;
+            var inputCom = role.InputComponent;
             var attrCom = role.AttributeComponent;
             var gameSetting = ctx.assetsCore.gameSettingSO.tm;
             Vector2 cameraRotateSensitivity;

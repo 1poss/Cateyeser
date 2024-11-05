@@ -5,6 +5,7 @@ namespace NJM.Domains {
 
     public static class RoleDomain {
 
+        #region Lifecycle
         public static RoleEntity Spawn(GameContext ctx, int typeID, AllyStatus allyStatus, Vector3 pos, Vector3 face) {
             var role = GameFactory.Role_Create(ctx, typeID, allyStatus, pos, face);
 
@@ -33,7 +34,9 @@ namespace NJM.Domains {
 
             return role;
         }
+        #endregion
 
+        #region Physics
         public static void Physics_ManualTick(GameContext ctx, RoleEntity role, float fixdt) {
             // Box Cast
             Physics_FootCheck(ctx, role, fixdt);
@@ -48,7 +51,9 @@ namespace NJM.Domains {
                 RoleDomain.Locomotion_Land(ctx, role);
             }
         }
+        #endregion
 
+        #region Locomotion
         public static void Locomotion_Move(GameContext ctx, RoleEntity role, Vector2 moveAxis, float speed) {
             Vector3 moveDir = ctx.cameraCore.Input_GetMoveForwardDir(moveAxis);
             role.Move_HorizontalByVelocity(moveDir, speed);
@@ -69,6 +74,13 @@ namespace NJM.Domains {
         static void Locomotion_Land(GameContext ctx, RoleEntity role) {
             role.Land();
         }
+        #endregion
+
+        #region Combat
+        public static void Skill_TryCast(GameContext ctx, RoleEntity role) {
+
+        }
+        #endregion
 
     }
 

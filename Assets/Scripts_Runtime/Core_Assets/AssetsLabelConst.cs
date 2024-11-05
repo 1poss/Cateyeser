@@ -10,6 +10,7 @@ namespace NJM.CoreAssets.Internal {
         public const string SO_ROLE = "So_Role";
         public const string SO_STAGE = "So_Stage";
         public const string SO_BULLET = "So_Bullet";
+        public const string SO_SKILL = "So_Skill";
 
     }
 

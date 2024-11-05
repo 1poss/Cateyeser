@@ -6,6 +6,7 @@ namespace NJM {
 
         int roleIDRecord;
         int bulletIDRecord;
+        int skillIDRecord;
 
         public IDService() {
             roleIDRecord = 0;
@@ -17,6 +18,10 @@ namespace NJM {
 
         public int PickBulletID() {
             return ++bulletIDRecord;
+        }
+
+        public int PickSkillID() {
+            return ++skillIDRecord;
         }
 
     }

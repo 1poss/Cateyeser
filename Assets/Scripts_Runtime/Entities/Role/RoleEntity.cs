@@ -15,13 +15,20 @@ namespace NJM {
         RoleMod mod;
         public RoleMod Mod => mod;
 
-        public RoleInputComponent inputComponent;
+        RoleInputComponent inputComponent;
+        public RoleInputComponent InputComponent => inputComponent;
 
         RoleMoveComponent moveComponent;
         public RoleMoveComponent MoveComponent => moveComponent;
 
         RoleAttributeComponent attributeComponent;
         public RoleAttributeComponent AttributeComponent => attributeComponent;
+
+        RoleSkillStateComponent skillStateComponent;
+        public RoleSkillStateComponent SkillStateComponent => skillStateComponent;
+
+        RoleSkillSlotComponent skillSlotComponent;
+        public RoleSkillSlotComponent SkillSlotComponent => skillSlotComponent;
 
         RoleFSMComponent fsmComponent;
         public RoleFSMComponent FSMComponent => fsmComponent;
@@ -31,6 +38,8 @@ namespace NJM {
             inputComponent = new RoleInputComponent();
             moveComponent = new RoleMoveComponent();
             attributeComponent = new RoleAttributeComponent();
+            skillStateComponent = new RoleSkillStateComponent();
+            skillSlotComponent = new RoleSkillSlotComponent();
 
             fsmComponent = new RoleFSMComponent();
 

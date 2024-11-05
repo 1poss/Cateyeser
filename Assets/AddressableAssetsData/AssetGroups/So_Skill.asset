@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: So_Skill
+  m_EditorClassIdentifier: 
+  m_GroupName: So_Skill
+  m_GUID: 44d672a17a57a514780a98b85dfbd6eb
+  m_SerializeEntries:
+  - m_GUID: e8fc6e70f0e1f114abfb682f54eb94a6
+    m_Address: So_Skill_1_ShootTestBullet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: c0eb644c56c69be4197732fd96cc7869, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 522d8a5c475e20d48ae1b04d66f3957d, type: 2}
+    - {fileID: 11400000, guid: 17ca8d3c22d4a0f4fb1077f90f79f84a, type: 2}

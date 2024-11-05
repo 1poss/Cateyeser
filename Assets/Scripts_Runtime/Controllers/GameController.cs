@@ -32,7 +32,7 @@ namespace NJM.Controllers {
 
             var owner = ctx.Role_Owner();
             if (owner != null) {
-                var inputComponent = owner.inputComponent;
+                var inputComponent = owner.InputComponent;
                 inputComponent.MoveAxis_Set(input.MoveAxis);
                 inputComponent.LookAxis_Set(input.LookAxis);
                 inputComponent.IsJumpDown_Set(input.IsJumpDown);

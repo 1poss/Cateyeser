@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using NJM.Template;
 
 namespace NJM {
 
@@ -54,11 +55,13 @@ namespace NJM {
 
             role.Inject(mod);
 
+            // - Basic
             role.id = ctx.idService.PickRoleID();
             role.typeID = tm.typeID;
             role.typeName = tm.typeName;
             role.allyStatus = allyStatus;
 
+            // - Attr
             var attrCom = role.AttributeComponent;
             attrCom.SetMoveSpeed(tm.moveSpeed);
             attrCom.SetJumpForce(tm.jumpForce);
@@ -66,6 +69,17 @@ namespace NJM {
             attrCom.SetFallingMaxSpeed(tm.fallingMaxSpeed);
 
             attrCom.SetFpsAimMultiplier(tm.fpsAimMultiplier);
+
+            // - Skill
+            var skillSlotCom = role.SkillSlotComponent;
+            var skillSos = tm.skillSos;
+            if (skillSos != null) {
+                for (int i = 0; i < skillSos.Length; i += 1) {
+                    var skillSo = skillSos[i];
+                    var skill = Skill_Create(ctx, skillSo.tm);
+                    skillSlotCom.Add(skill);
+                }
+            }
 
             return role;
 
@@ -109,6 +123,29 @@ namespace NJM {
 
             return bullet;
 
+        }
+        #endregion
+
+        #region Skill
+        public static SkillSubEntity Skill_Create(GameContext ctx, int typeID) {
+            bool has = ctx.assetsCore.So_Skill_TryGet(typeID, out var so);
+            if (!has) {
+                Debug.LogError($"So_Skill TypeID {typeID} not found");
+            }
+
+            var tm = so.tm;
+            return Skill_Create(ctx, tm);
+        }
+
+        public static SkillSubEntity Skill_Create(GameContext ctx, SkillTM tm) {
+            SkillSubEntity skill = new SkillSubEntity();
+            skill.id = ctx.idService.PickSkillID();
+            skill.typeID = tm.typeID;
+            skill.typeName = tm.typeName;
+
+            skill.castKey = tm.castKey;
+
+            return skill;
         }
         #endregion
     }

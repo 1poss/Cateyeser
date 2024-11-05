@@ -21,3 +21,5 @@ MonoBehaviour:
     fallingG: 14
     fallingMaxSpeed: 40
     fpsAimMultiplier: 3
+    skillSos:
+    - {fileID: 11400000, guid: e8fc6e70f0e1f114abfb682f54eb94a6, type: 2}

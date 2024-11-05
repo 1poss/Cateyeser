@@ -21,6 +21,9 @@ namespace NJM.Template {
         // - Attr: Shooting
         public float fpsAimMultiplier;
 
+        // - Skill
+        public SkillSO[] skillSos;
+
     }
 
 }
