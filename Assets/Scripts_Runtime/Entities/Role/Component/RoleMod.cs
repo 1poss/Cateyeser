@@ -37,7 +37,15 @@ namespace NJM {
         // 如需拆解TPS和FPS, 后续再动
         public void Head_Rotate(Vector2 lookAxis) {
             // Logic
-            logic_head.transform.Rotate(Vector3.right, lookAxis.y);
+            float angleX = logic_head.transform.localEulerAngles.x;
+            angleX -= lookAxis.y;
+            if (angleX > 180) {
+                angleX -= 360;
+            }
+            float headUpLimit = -65;
+            float headDownLimit = 80;
+            angleX = Mathf.Clamp(angleX, headUpLimit, headDownLimit);
+            logic_head.transform.localEulerAngles = new Vector3(angleX, 0, 0);
 
             // Render
             rend_head.transform.forward = logic_head.transform.forward;
