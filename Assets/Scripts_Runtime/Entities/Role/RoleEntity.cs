@@ -52,7 +52,9 @@ namespace NJM {
 
         public void Jump(bool isJumpDown, float jumpForce) {
             if (isJumpDown && moveComponent.isGrounded) {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                Vector3 vel = rb.linearVelocity;
+                vel.y = jumpForce;
+                rb.linearVelocity = vel;
                 moveComponent.LeaveGround();
             }
         }

@@ -23,6 +23,7 @@ namespace NJM {
                 var spawner = terrainSpawners[i];
                 var terrain = Terrain.CreateTerrainGameObject(spawner.terrainData);
                 terrain.transform.position = spawner.pos;
+                terrain.gameObject.layer = LayerConst.GROUND;
                 stage.terrains.Add(terrain.GetComponent<Terrain>());
             }
 

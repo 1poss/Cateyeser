@@ -48,7 +48,8 @@ namespace NJM {
             logic_head.transform.localEulerAngles = new Vector3(angleX, 0, 0);
 
             // Render
-            rend_head.transform.forward = logic_head.transform.forward;
+            Vector3 rendForward = (logic_head.transform.forward + logic_bodyTF.forward) / 2f;
+            rend_head.transform.forward = rendForward;
         }
 
         public Vector3 Head_TF_Pos() {

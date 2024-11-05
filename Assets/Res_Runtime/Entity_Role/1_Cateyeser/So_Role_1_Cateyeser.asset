@@ -17,7 +17,7 @@ MonoBehaviour:
     typeName: "\u732B\u773C"
     modPrefab: {fileID: 2317477763023318772, guid: c9814c4f57de0234494ad6bcb92785cc, type: 3}
     moveSpeed: 5.5
-    jumpForce: 100
-    fallingG: 9.8
+    jumpForce: 6
+    fallingG: 14
     fallingMaxSpeed: 40
     fpsAimMultiplier: 3
