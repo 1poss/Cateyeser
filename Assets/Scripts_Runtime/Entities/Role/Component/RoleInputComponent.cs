@@ -13,10 +13,29 @@ namespace NJM {
         public void MoveAxis_Reset() => moveAxis = Vector2.zero;
 
         // - Jump
+        const int JUMP_CONTINUOUS_FRAME = 8;
         bool isJumpDown;
-        public bool IsJumpDown => isJumpDown;
-        public void IsJumpDown_Set(bool value) => isJumpDown = value;
-        public void IsJumpDown_Reset() => isJumpDown = false;
+        int jumpContinuousFrame;
+        public bool IsJumpDown {
+            get {
+                if (jumpContinuousFrame > 0) {
+                    return true;
+                }
+                return isJumpDown;
+            }
+        }
+        public void IsJumpDown_Set(bool value) {
+            isJumpDown = value;
+            if (value) {
+                jumpContinuousFrame = JUMP_CONTINUOUS_FRAME;
+            } else {
+                jumpContinuousFrame--;
+            }
+        }
+        public void IsJumpDown_Reset() {
+            isJumpDown = false;
+            jumpContinuousFrame = 0;
+        }
 
         // - Look
         Vector2 lookAxis;
