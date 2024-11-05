@@ -10,26 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Entity
+  m_Name: So_Bullet
   m_EditorClassIdentifier: 
-  m_GroupName: Entity
-  m_GUID: c2493b2c6aa659441996d6c0d0371f04
+  m_GroupName: So_Bullet
+  m_GUID: 31665eb5a057c3d4a8312c338fb22e42
   m_SerializeEntries:
-  - m_GUID: 207952d15ac6b064784df3ab04ee00c0
-    m_Address: Entity_Role
+  - m_GUID: 23199f229ec8fd74491e90d2174d4626
+    m_Address: So_Bullet_90000_Test
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Entity
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5531be0e162c35640947300c9dc72e7b
-    m_Address: Entity_Bullet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Entity
+    - So_Bullet
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c0eb644c56c69be4197732fd96cc7869, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: a31fc0604d8fa5e48b358bc5381deabf, type: 2}
-    - {fileID: 11400000, guid: 2a2e87f4f4d74344296bd8cb09b06060, type: 2}
+    - {fileID: 11400000, guid: a537f59828d73cf4382ab1480eef94e8, type: 2}
+    - {fileID: 11400000, guid: 9b9f0ddb49774e249b1f36a5806d7d5d, type: 2}

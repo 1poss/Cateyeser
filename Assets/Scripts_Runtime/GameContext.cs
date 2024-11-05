@@ -11,6 +11,7 @@ namespace NJM {
         // ==== Entity Repository ====
         public StageRepository stageRepository;
         public RoleRepository roleRepository;
+        public BulletRepository bulletRepository;
 
         // ==== Cores ====
         public InputCore inputCore;
@@ -30,6 +31,7 @@ namespace NJM {
 
             stageRepository = new StageRepository();
             roleRepository = new RoleRepository();
+            bulletRepository = new BulletRepository();
 
             inputCore = new InputCore();
             assetsCore = new AssetsCore();

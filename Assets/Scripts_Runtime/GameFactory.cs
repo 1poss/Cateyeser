@@ -5,6 +5,7 @@ namespace NJM {
 
     public static class GameFactory {
 
+        #region Stage
         public static StageEntity Stage_Create(GameContext ctx, StageSignature stageSignature) {
             bool has = ctx.assetsCore.So_Stage_TryGet(stageSignature, out var so);
             if (!has) {
@@ -30,7 +31,9 @@ namespace NJM {
             return stage;
 
         }
+        #endregion
 
+        #region Role
         public static RoleEntity Role_Create(GameContext ctx, int typeID, AllyStatus allyStatus, Vector3 pos, Vector3 face) {
 
             var prefab = ctx.assetsCore.Entity_RolePrefab();
@@ -67,6 +70,46 @@ namespace NJM {
             return role;
 
         }
+        #endregion
 
+        #region Bullet
+        public static BulletEntity Bullet_Create(GameContext ctx, int typeID, AllyStatus allyStatus, Vector3 originPos, Vector3 originForward) {
+            bool has = ctx.assetsCore.So_Bullet_TryGet(typeID, out var so);
+            if (!has) {
+                Debug.LogError($"So_Bullet TypeID {typeID} not found");
+            }
+
+            var tm = so.tm;
+
+            var prefab = ctx.assetsCore.Entity_BulletPrefab();
+            var go = GameObject.Instantiate(prefab, originPos, Quaternion.LookRotation(originForward));
+
+            var bullet = go.GetComponent<BulletEntity>();
+            bullet.Ctor();
+
+            var modPrefab = tm.modPrefab;
+            var mod = GameObject.Instantiate(modPrefab, bullet.transform);
+            mod.Ctor();
+
+            bullet.Inject(mod);
+
+            bullet.id = ctx.idService.PickBulletID();
+            bullet.typeID = tm.typeID;
+
+            // - Attribute
+            var attrCom = bullet.attrComponent;
+
+            attrCom.flyType = tm.flyType;
+            attrCom.flySpeed = tm.flySpeed;
+
+            attrCom.dmg = tm.dmg;
+
+            attrCom.maintainSec = tm.maintainSec;
+            attrCom.maintainTimer = tm.maintainSec;
+
+            return bullet;
+
+        }
+        #endregion
     }
 }

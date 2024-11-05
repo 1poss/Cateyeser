@@ -29,6 +29,9 @@ namespace NJM {
         Dictionary<StageSignature, StageSO> so_stages;
         AsyncOperationHandle<IList<StageSO>> so_stagesHandle;
 
+        Dictionary<int, BulletSO> so_bullets;
+        AsyncOperationHandle<IList<BulletSO>> so_bulletsHandle;
+
         public AssetsCore() {
             
             entityPrefabs = new Dictionary<string, GameObject>();
@@ -36,6 +39,7 @@ namespace NJM {
 
             so_roles = new Dictionary<int, RoleSO>();
             so_stages = new Dictionary<StageSignature, StageSO>();
+            so_bullets = new Dictionary<int, BulletSO>();
 
         }
 
@@ -79,6 +83,15 @@ namespace NJM {
                     so_stages.Add(so.tm.stageSignature, so);
                 }
             }
+
+            {
+                // - SO Bullet
+                so_bulletsHandle = Addressables.LoadAssetsAsync<BulletSO>(AssetsLabelConst.SO_BULLET, null);
+                await so_bulletsHandle.Task;
+                foreach (var so in so_bulletsHandle.Result) {
+                    so_bullets.Add(so.tm.typeID, so);
+                }
+            }
         }
 
         public void UnloadAll() {
@@ -104,6 +117,10 @@ namespace NJM {
             return entityPrefabs["Entity_Role"];
         }
 
+        public GameObject Entity_BulletPrefab() {
+            return entityPrefabs["Entity_Bullet"];
+        }
+
         // ==== UI ====
         public GameObject UI_GetPanel(string name) {
             return panelPrefabs[name];
@@ -117,6 +134,11 @@ namespace NJM {
         // ==== So Stages ====
         public bool So_Stage_TryGet(StageSignature stageSignature, out StageSO so) {
             return so_stages.TryGetValue(stageSignature, out so);
+        }
+
+        // ==== So Bullets ====
+        public bool So_Bullet_TryGet(int typeID, out BulletSO so) {
+            return so_bullets.TryGetValue(typeID, out so);
         }
 
     }

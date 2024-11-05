@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 391609dca530d1743a444eb5816afbd1, type: 3}
+  m_Name: So_Bullet_90000_Test
+  m_EditorClassIdentifier: 
+  tm:
+    typeID: 90000
+    typeName: TestBullet
+    modPrefab: {fileID: 2035600363588694115, guid: 75a0bd311c386c441b4a3c6a8bccdf10, type: 3}
+    maintainSec: 5
+    flyType: 1
+    flySpeed: 40
+    dmg: 1
