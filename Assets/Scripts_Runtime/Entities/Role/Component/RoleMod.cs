@@ -14,9 +14,10 @@ namespace NJM {
         [SerializeField] Transform logic_bodyTF;
         [SerializeField] Collider logic_head;
         [SerializeField] Collider logic_bodyBox;
-        [SerializeField] Collider logic_leftHand;
-        [SerializeField] Collider logic_rightHand;
+        [SerializeField] Transform logic_rightHandTF;
         [SerializeField] public Collider logic_foot;
+        [SerializeField] public Transform logic_gun;
+        [SerializeField] public Transform logic_muzzle;
 
         public void Ctor() {
 
@@ -45,11 +46,16 @@ namespace NJM {
             float headUpLimit = -65;
             float headDownLimit = 80;
             angleX = Mathf.Clamp(angleX, headUpLimit, headDownLimit);
-            logic_head.transform.localEulerAngles = new Vector3(angleX, 0, 0);
+
+            Vector3 rotation = new Vector3(angleX, 0, 0);
+            logic_head.transform.localEulerAngles = rotation;
+            logic_rightHandTF.transform.localEulerAngles = rotation;
 
             // Render
             Vector3 rendForward = (logic_head.transform.forward + logic_bodyTF.forward) / 2f;
             rend_head.transform.forward = rendForward;
+            rend_leftHand.transform.forward = rendForward;
+            rend_rightHand.transform.forward = rendForward;
         }
 
         public Vector3 Head_TF_Pos() {
