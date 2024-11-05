@@ -10,7 +10,7 @@ namespace NJM.Domains {
             var role = GameFactory.Role_Create(ctx, typeID, allyStatus, pos, face);
 
             RoleFSMDomain.Normal_Enter(ctx, role);
-            
+
             ctx.roleRepository.Add(role);
 
             return role;
@@ -78,7 +78,42 @@ namespace NJM.Domains {
 
         #region Combat
         public static void Skill_TryCast(GameContext ctx, RoleEntity role) {
+            var inputCom = role.InputComponent;
+            SkillCastKey castKey = SkillCastKey.None;
+            if (inputCom.MeleeAxis > 0) {
+                castKey = SkillCastKey.Melee;
+            } else if (inputCom.Skill1Axis > 0) {
+                castKey = SkillCastKey.Skill1;
+            } else if (inputCom.Skill2Axis > 0) {
+                castKey = SkillCastKey.Skill2;
+            } else if (inputCom.Skill3Axis > 0) {
+                castKey = SkillCastKey.Skill3;
+            }
 
+            // 找到要放的技能
+            var skillSlot = role.SkillSlotComponent;
+            bool has = skillSlot.TryGetByCastKey(castKey, out var skill);
+            if (!has) {
+                // 不存在该技能
+                return;
+            }
+
+            // 检查技能是否可以释放
+            if (!Skill_IsAllowCast(ctx, role, skill)) {
+                return;
+            }
+
+            // 释放技能
+            Skill_Cast(ctx, role, skill);
+        }
+
+        public static bool Skill_IsAllowCast(GameContext ctx, RoleEntity role, SkillSubEntity skill) {
+            // TODO: cd, mp, grounded, etc
+            return true;
+        }
+
+        public static void Skill_Cast(GameContext ctx, RoleEntity role, SkillSubEntity skill) {
+            Debug.Log($"RoleDomain.Skill_Cast {role.typeName} {skill.typeName}");
         }
         #endregion
 

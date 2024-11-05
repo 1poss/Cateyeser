@@ -38,6 +38,7 @@ namespace NJM.Domains {
             RoleDomain.Locomotion_Rotate(ctx, role, inputCom.LookAxis, cameraRotateSensitivity, fixdt);
             RoleDomain.Locomotion_Jump(ctx, role, inputCom.IsJumpDown, attrCom.JumpForce);
             RoleDomain.Locomotion_Falling(ctx, role, attrCom.FallingG, attrCom.FallingMaxSpeed, fixdt);
+            RoleDomain.Skill_TryCast(ctx, role);
         }
     }
 }
