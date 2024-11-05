@@ -64,7 +64,10 @@ namespace NJM.Domains {
         }
 
         public static void Locomotion_Jump(GameContext ctx, RoleEntity role, bool isJumpDown, float jumpForce) {
-            role.Jump(isJumpDown, jumpForce);
+            bool succ = role.Jump(isJumpDown, jumpForce);
+            if (succ) {
+                role.InputComponent.IsJumpDown_Reset();
+            }
         }
 
         public static void Locomotion_Falling(GameContext ctx, RoleEntity role, float fallingG, float fallingMaxSpeed, float fixdt) {
@@ -103,8 +106,20 @@ namespace NJM.Domains {
                 return;
             }
 
+            // 清空指令缓冲
+            if (castKey == SkillCastKey.Melee) {
+                inputCom.MeleeAxis_Reset();
+            } else if (castKey == SkillCastKey.Skill1) {
+                inputCom.Skill1Axis_Reset();
+            } else if (castKey == SkillCastKey.Skill2) {
+                inputCom.Skill2Axis_Reset();
+            } else if (castKey == SkillCastKey.Skill3) {
+                inputCom.Skill3Axis_Reset();
+            }
+
             // 释放技能
             Skill_Cast(ctx, role, skill);
+
         }
 
         public static bool Skill_IsAllowCast(GameContext ctx, RoleEntity role, SkillSubEntity skill) {

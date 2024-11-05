@@ -59,13 +59,15 @@ namespace NJM {
             return mod.Head_TF_Forward();
         }
 
-        public void Jump(bool isJumpDown, float jumpForce) {
+        public bool Jump(bool isJumpDown, float jumpForce) {
             if (isJumpDown && moveComponent.isGrounded) {
                 Vector3 vel = rb.linearVelocity;
                 vel.y = jumpForce;
                 rb.linearVelocity = vel;
                 moveComponent.LeaveGround();
+                return true;
             }
+            return false;
         }
 
         public void Falling(float g, float maxFallingSpeed, float fixdt) {
