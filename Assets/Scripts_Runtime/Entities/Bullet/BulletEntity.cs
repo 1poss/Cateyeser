@@ -7,11 +7,15 @@ namespace NJM {
 
         public int id;
         public int typeID;
+        public AllyStatus allyStatus;
 
         [SerializeField] Rigidbody rb;
 
         public BulletMod mod;
         public BulletAttributeComponent attrComponent;
+
+        public Vector3 originPos;
+        public Vector3 originForward;
 
         public void Ctor() {
             attrComponent = new BulletAttributeComponent();
@@ -19,6 +23,10 @@ namespace NJM {
 
         public void Inject(BulletMod mod) {
             this.mod = mod;
+        }
+
+        public void Move(Vector3 dir, float moveSpeed) {
+            rb.linearVelocity = dir * moveSpeed;
         }
 
     }

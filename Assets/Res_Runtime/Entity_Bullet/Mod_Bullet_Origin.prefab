@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8308048001743799414}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Logic_Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2280891266683566413}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rend_Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 4901045585675986850}
   - component: {fileID: 3015587825241500841}
   - component: {fileID: 4392354020556045630}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213041479615354452}
   - component: {fileID: 6648968327819960315}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body_Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5390525808525490436}
   - component: {fileID: 4167085300021228993}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mod_Bullet_Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}

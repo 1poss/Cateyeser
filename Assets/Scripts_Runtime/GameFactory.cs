@@ -109,6 +109,7 @@ namespace NJM {
 
             bullet.id = ctx.idService.PickBulletID();
             bullet.typeID = tm.typeID;
+            bullet.allyStatus = allyStatus;
 
             // - Attribute
             var attrCom = bullet.attrComponent;
@@ -120,6 +121,10 @@ namespace NJM {
 
             attrCom.maintainSec = tm.maintainSec;
             attrCom.maintainTimer = tm.maintainSec;
+
+            // - State
+            bullet.originPos = originPos;
+            bullet.originForward = originForward;
 
             return bullet;
 

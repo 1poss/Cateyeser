@@ -18,6 +18,7 @@ namespace NJM {
             foreach (var action in skill.actions) {
                 action.maintainTimer = action.maintainSec;
             }
+            currentSkillActionIndex = 0;
             lastSkillActionIndex = -1;
         }
 
