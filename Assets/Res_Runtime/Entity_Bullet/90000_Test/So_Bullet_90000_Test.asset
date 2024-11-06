@@ -19,5 +19,5 @@ MonoBehaviour:
     maintainSec: 5
     restHitTimes: 1
     flyType: 1
-    flySpeed: 40
+    flySpeed: 120
     dmg: 1
