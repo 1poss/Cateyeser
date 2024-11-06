@@ -16,6 +16,32 @@ namespace NJM.Domains {
         #endregion
 
         #region Physics
+        static RaycastHit[] tmp_hitChecks = new RaycastHit[100];
+        public static void Physics_HitProcess(GameContext ctx, BulletEntity bullet, float fixdt) {
+            // 注: 所有Bullet以子弹头为坐标
+            Vector3 fwd = bullet.TF_Head_Fwd();
+            float distance = bullet.attrComponent.flySpeed * fixdt;
+            int layer = 1 << LayerConst.BULLET | 1 << LayerConst.ROLE | 1 << LayerConst.GROUND;
+            int hitCount = Physics.RaycastNonAlloc(bullet.TF_Head_Pos(), fwd, tmp_hitChecks, distance, layer);
+            if (hitCount > 0) {
+                for (int i = 0; i < hitCount; i += 1) {
+                    if (bullet.attrComponent.restHitTimes <= 0) {
+                        break;
+                    }
+                    var hit = tmp_hitChecks[i];
+                    var hitObj = hit.collider.gameObject;
+                    var hitBullet = hitObj.GetComponentInParent<BulletEntity>();
+                    if (hitBullet != null && hitBullet == bullet) {
+                        continue;
+                    }
+
+                    // - Hit Ground
+                    if (hit.collider.gameObject.layer == LayerConst.GROUND) {
+                        Hit_Ground(ctx, bullet, hit);
+                    }
+                }
+            }
+        }
         #endregion
 
         #region Locomotion
@@ -34,6 +60,20 @@ namespace NJM.Domains {
             var speed = attrCom.flySpeed;
             var dir = bullet.originForward;
             bullet.Move(dir, speed);
+        }
+        #endregion
+
+        #region Hit
+        public static void Hit_Ground(GameContext ctx, BulletEntity bullet, RaycastHit hitTarget) {
+            bullet.TF_Set_Pos(hitTarget.point);
+            Die_There(ctx, bullet, hitTarget.point);
+        }
+        #endregion
+
+        #region Die
+        public static void Die_There(GameContext ctx, BulletEntity bullet, Vector3 diePos) {
+            ctx.bulletRepository.Remove(bullet);
+            GameObject.Destroy(bullet.gameObject);
         }
         #endregion
 

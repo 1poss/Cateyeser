@@ -115,13 +115,15 @@ namespace NJM {
             // - Attribute
             var attrCom = bullet.attrComponent;
 
+            attrCom.maintainSec = tm.maintainSec;
+            attrCom.maintainTimer = tm.maintainSec;
+
+            attrCom.restHitTimes = tm.restHitTimes;
+
             attrCom.flyType = tm.flyType;
             attrCom.flySpeed = tm.flySpeed;
 
             attrCom.dmg = tm.dmg;
-
-            attrCom.maintainSec = tm.maintainSec;
-            attrCom.maintainTimer = tm.maintainSec;
 
             // - State
             bullet.originPos = originPos;

@@ -59,6 +59,7 @@ namespace NJM.Controllers {
             for (int i = 0; i < bulletCount; i += 1) {
                 var bullet = bullets[i];
                 BulletDomain.Fly(ctx, bullet, fixdt);
+                BulletDomain.Physics_HitProcess(ctx, bullet, fixdt);
             }
 
             Physics.Simulate(fixdt);

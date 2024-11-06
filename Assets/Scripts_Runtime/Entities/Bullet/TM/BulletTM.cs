@@ -15,6 +15,9 @@ namespace NJM.Template {
         // ==== Lifecycle ====
         public float maintainSec;
 
+        // ==== Hit ====
+        public int restHitTimes;
+
         // ==== Attribute ====
         public BulletFlyType flyType;
         public float flySpeed;

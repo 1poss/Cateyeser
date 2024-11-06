@@ -8,6 +8,8 @@ namespace NJM {
         public float maintainSec;
         public float maintainTimer;
 
+        public int restHitTimes;
+
         public BulletFlyType flyType;
         public float flySpeed;
 
