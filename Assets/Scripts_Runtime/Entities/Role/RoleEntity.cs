@@ -9,6 +9,7 @@ namespace NJM {
         public int typeID;
         public string typeName;
         public AllyStatus allyStatus;
+        public RoleType roleType;
 
         [SerializeField] Rigidbody rb;
 

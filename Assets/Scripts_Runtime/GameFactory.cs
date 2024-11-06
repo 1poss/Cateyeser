@@ -60,6 +60,7 @@ namespace NJM {
             role.typeID = tm.typeID;
             role.typeName = tm.typeName;
             role.allyStatus = allyStatus;
+            role.roleType = tm.roleType;
 
             // - Attr
             var attrCom = role.AttributeComponent;

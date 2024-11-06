@@ -16,6 +16,9 @@ namespace NJM.MainEntry {
 
         void Awake() {
 
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 120;
+
             // ==== Ctor ====
             ctx = new GameContext();
             var uiApp = GetComponent<UIApp>();

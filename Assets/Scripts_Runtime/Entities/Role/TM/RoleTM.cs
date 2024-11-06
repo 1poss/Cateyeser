@@ -8,6 +8,7 @@ namespace NJM.Template {
 
         public int typeID;
         public string typeName;
+        public RoleType roleType;
 
         // - Mod
         public RoleMod modPrefab;
