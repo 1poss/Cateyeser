@@ -91,7 +91,7 @@ namespace NJM {
                 return res;
             }
 
-            res = CameraDomain.TickApply(ctx, entity, followSingleArgs, dt);
+            res = CameraApplyDomain.TickApply(ctx, entity, followSingleArgs, dt);
 
             // Apply To Main
             mainCam.transform.position = res.pos;
@@ -100,18 +100,22 @@ namespace NJM {
             return res;
         }
 
-        public void Follow_Single_Start(int id, CameraFollowType followType, Vector3 targetStartPos, Vector3 targetStartForward, Vector3 followOffset, float followSpeed) {
+        public void Follow_Single_Setup(int id, CameraFollowType followType, Vector3 targetStartPos, Vector3 targetStartForward, Vector3 followOffset, float followSpeed) {
             CameraEntity entity = ctx.repository.Get(id);
             if (entity == null) {
                 Debug.LogWarning($"CameraEntity {id} not found");
                 return;
             }
-            entity.pos = targetStartPos;
-            entity.forward = targetStartForward;
+            CameraSetupDomain.Follow_Single_Setup(ctx, entity, followType, targetStartPos, targetStartForward, followOffset, followSpeed);
+        }
 
-            entity.followType = followType;
-            entity.followOffset = followOffset;
-            entity.follow_speed = followSpeed;
+        public void Follow_Single_Offset_Set(int id, Vector3 offset) {
+            CameraEntity entity = ctx.repository.Get(id);
+            if (entity == null) {
+                Debug.LogWarning($"CameraEntity {id} not found");
+                return;
+            }
+            CameraSetupDomain.Follow_Single_Offset_Set(ctx, entity, offset);
         }
 
     }

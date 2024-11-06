@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace NJM.CoreCamera.Internal {
 
-    public static class CameraDomain {
+    public static class CameraApplyDomain {
 
         public static CameraResultArgs TickApply(CameraContext ctx, CameraEntity entity, CameraFollowSingleArgs args, float dt) {
 

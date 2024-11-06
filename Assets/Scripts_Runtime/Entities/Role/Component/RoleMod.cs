@@ -44,7 +44,7 @@ namespace NJM {
                 angleX -= 360;
             }
             float headUpLimit = -65;
-            float headDownLimit = 80;
+            float headDownLimit = 65;
             angleX = Mathf.Clamp(angleX, headUpLimit, headDownLimit);
 
             Vector3 rotation = new Vector3(angleX, 0, 0);

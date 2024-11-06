@@ -72,22 +72,7 @@ namespace NJM.Controllers {
 
             var owner = ctx.Role_Owner();
             if (owner != null) {
-
-                if (game.isFPSAiming) {
-                    // Camera: FPS
-                    float fpsAimMultiplier = owner.AttributeComponent.FpsAimMultiplier;
-                    CameraFollowSingleArgs args;
-                    args.targetPos = owner.TF_Pos() + owner.TF_Forward() * fpsAimMultiplier;
-                    args.targetForward = owner.TF_Forward();
-                    _ = ctx.cameraCore.Follow_Tick(CameraCore.fpID, args, dt);
-                } else {
-                    // Camera: TPS
-                    CameraFollowSingleArgs args;
-                    args.targetPos = owner.TF_Pos();
-                    args.targetForward = owner.TF_Forward();
-                    _ = ctx.cameraCore.Follow_Tick(CameraCore.tpID, args, dt);
-                }
-
+                CameraDomain.FollowOwner(ctx, owner, dt);
             }
 
         }

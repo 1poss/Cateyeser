@@ -58,11 +58,11 @@ namespace NJM {
             return allyStatus == AllyStatus.Player;
         }
 
-        public Vector3 TF_Pos() {
+        public Vector3 TF_Head_Pos() {
             return mod.Head_TF_Pos();
         }
 
-        public Vector3 TF_Forward() {
+        public Vector3 TF_Head_Forward() {
             return mod.Head_TF_Forward();
         }
 

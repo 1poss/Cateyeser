@@ -23,13 +23,13 @@ namespace NJM.Domains {
             // Camera: FPS
             {
                 Vector3 followOffset = new Vector3(0, 0, 0);
-                ctx.cameraCore.Follow_Single_Start(CameraCore.fpID, CameraFollowType.OnlyFollow, role.TF_Pos(), role.TF_Forward(), followOffset, 100);
+                ctx.cameraCore.Follow_Single_Setup(CameraCore.fpID, CameraFollowType.FollowAndRound, role.TF_Head_Pos(), role.TF_Head_Forward(), followOffset, 100);
             }
 
             // Camera: TPS
             {
                 Vector3 followOffset = new Vector3(0, 2, 6);
-                ctx.cameraCore.Follow_Single_Start(CameraCore.tpID, CameraFollowType.FollowAndRound, role.TF_Pos(), role.TF_Forward(), followOffset, 100);
+                ctx.cameraCore.Follow_Single_Setup(CameraCore.tpID, CameraFollowType.FollowAndRound, role.TF_Head_Pos(), role.TF_Head_Forward(), followOffset, 100);
             }
 
             return role;
@@ -48,12 +48,21 @@ namespace NJM.Domains {
 
         static RaycastHit[] tmp_aimCheckHits = new RaycastHit[10];
         static void Physics_AimProcess(GameContext ctx, RoleEntity role) {
+            // 作用: 检测准星是否击中地面或者敌人
             var mainCam = ctx.cameraCore.MainCam;
             int layer = 1 << LayerConst.GROUND | 1 << LayerConst.ROLE | 1 << LayerConst.BULLET;
             int count = Physics.RaycastNonAlloc(mainCam.transform.position, mainCam.transform.forward, tmp_aimCheckHits, 100, layer);
             if (count > 0) {
-                role.hasAimHitPoint = true;
-                role.aimHitPoint = tmp_aimCheckHits[0].point;
+                for (int i = 0; i < count; i += 1) {
+                    var hit = tmp_aimCheckHits[i];
+                    var hitOwner = hit.collider.GetComponentInParent<RoleEntity>();
+                    if (hitOwner != null && hitOwner.IsOwner()) {
+                        continue;
+                    }
+                    role.hasAimHitPoint = true;
+                    role.aimHitPoint = tmp_aimCheckHits[0].point;
+                    break;
+                }
             } else {
                 role.hasAimHitPoint = false;
             }
