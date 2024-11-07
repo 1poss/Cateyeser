@@ -38,6 +38,11 @@ namespace NJM.Domains {
                     // - Hit Ground
                     if (hit.collider.gameObject.layer == LayerConst.GROUND) {
                         Hit_Ground(ctx, bullet, hit);
+                    } else if (hit.collider.gameObject.layer == LayerConst.ROLE) {
+                        var hitRole = hit.collider.GetComponentInParent<RoleEntity>();
+                        if (hitRole != null) {
+                            Hit_Role(ctx, bullet, hitRole);
+                        }
                     }
                 }
             }
@@ -67,6 +72,18 @@ namespace NJM.Domains {
         public static void Hit_Ground(GameContext ctx, BulletEntity bullet, RaycastHit hitTarget) {
             bullet.TF_Set_Pos(hitTarget.point);
             Die_There(ctx, bullet, hitTarget.point);
+        }
+
+        static void Hit_Role(GameContext ctx, BulletEntity bullet, RoleEntity role) {
+            var attrCom = bullet.attrComponent;
+
+            // - Damage
+
+            // - Hit Times
+            attrCom.restHitTimes -= 1;
+            if (attrCom.restHitTimes <= 0) {
+                Die_There(ctx, bullet, role.TF_Head_Pos());
+            }
         }
         #endregion
 
