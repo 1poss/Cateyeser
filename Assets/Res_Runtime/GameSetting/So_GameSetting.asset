@@ -19,10 +19,10 @@ MonoBehaviour:
       stage: 1
       sub_stage: 0
     logoMaintainSec: 0
-    fps_rotationSpeed: {x: 90, y: 45}
+    fps_rotationSpeed: {x: 12, y: 6}
     fsp_isInvertX: 0
     fps_isInvertY: 0
-    tps_rotationSpeed: {x: 180, y: 90}
+    tps_rotationSpeed: {x: 45, y: 22}
     tps_isInvertX: 0
     tps_isInvertY: 1
     resolution: {x: 1280, y: 720}
