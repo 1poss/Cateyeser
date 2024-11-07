@@ -16,7 +16,13 @@ MonoBehaviour:
   m_GUID: 31665eb5a057c3d4a8312c338fb22e42
   m_SerializeEntries:
   - m_GUID: 23199f229ec8fd74491e90d2174d4626
-    m_Address: So_Bullet_90000_Test
+    m_Address: So_Bullet_1_MeleeBullet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 883b1cc687ac54f4eb5d74df8cdf169e
+    m_Address: So_Bullet_10_FlashBullet
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Bullet

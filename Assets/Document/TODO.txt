@@ -40,9 +40,11 @@
     √ 落地检测
     √ 转身
     √ 抬头
+    - 闪现
 - 人物 FSM
-    - Normal
-    - Die
+    √ Normal
+    √ GetHit
+    √ Die
     - Wait
 - 敌人 AI
     - 生成

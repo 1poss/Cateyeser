@@ -24,6 +24,8 @@ MonoBehaviour:
     fallingG: 14
     fallingMaxSpeed: 40
     fpsAimMultiplier: 3
-    deadMaintainSec: 1
+    fsm_deadMaintainSec: 0
+    fsm_getHitMaintainSec: 0
     skillSos:
     - {fileID: 11400000, guid: e8fc6e70f0e1f114abfb682f54eb94a6, type: 2}
+    - {fileID: 11400000, guid: 15ffe9876ce290d44a3dcfa9e00ed828, type: 2}

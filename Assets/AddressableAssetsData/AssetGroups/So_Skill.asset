@@ -15,8 +15,14 @@ MonoBehaviour:
   m_GroupName: So_Skill
   m_GUID: 44d672a17a57a514780a98b85dfbd6eb
   m_SerializeEntries:
+  - m_GUID: 15ffe9876ce290d44a3dcfa9e00ed828
+    m_Address: So_Skill_10_FlashShoot
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e8fc6e70f0e1f114abfb682f54eb94a6
-    m_Address: So_Skill_1_ShootTestBullet
+    m_Address: So_Skill_1_Melee
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Skill
