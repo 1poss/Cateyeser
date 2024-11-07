@@ -5,7 +5,8 @@ namespace NJM {
 
     public class BulletEntity : MonoBehaviour {
 
-        public int id;
+        public IDSignature idSig;
+        public IDSignature parentIDSig;
         public int typeID;
         public AllyStatus allyStatus;
 

@@ -17,11 +17,11 @@ namespace NJM {
         }
 
         public void Add(BulletEntity bullet) {
-            all.Add(bullet.id, bullet);
+            all.Add(bullet.idSig.id, bullet);
         }
 
         public void Remove(BulletEntity bullet) {
-            all.Remove(bullet.id);
+            all.Remove(bullet.idSig.id);
         }
 
         public BulletEntity Get(int id) {

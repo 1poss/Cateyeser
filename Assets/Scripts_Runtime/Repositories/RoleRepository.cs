@@ -16,7 +16,7 @@ namespace NJM {
         }
 
         public void Add(RoleEntity role) {
-            all.Add(role.id, role);
+            all.Add(role.idSig.id, role);
         }
 
         public bool TryGet(int id, out RoleEntity role) {

@@ -18,7 +18,7 @@ namespace NJM.Domains {
 
         public static RoleEntity SpawnOwner(GameContext ctx, int typeID, Vector3 pos, Vector3 face) {
             var role = Spawn(ctx, typeID, AllyStatus.Player, pos, face);
-            ctx.gameEntity.ownerRoleID = role.id;
+            ctx.gameEntity.ownerRoleID = role.idSig.id;
 
             // Camera: FPS
             {
@@ -223,6 +223,7 @@ namespace NJM.Domains {
                     fwd = role.Mod.logic_muzzle.transform.forward;
                 }
                 var bullet = BulletDomain.Spawn(ctx, action.shootBulletSO.tm.typeID, role.allyStatus, role.Mod.logic_muzzle.position, fwd);
+                bullet.parentIDSig = role.idSig;
             }
         }
         #endregion

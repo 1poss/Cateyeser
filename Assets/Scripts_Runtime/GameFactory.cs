@@ -47,7 +47,8 @@ namespace NJM {
             role.Inject(mod);
 
             // - Basic
-            role.id = ctx.idService.PickRoleID();
+            role.idSig.entityType = EntityType.Role;
+            role.idSig.id = ctx.idService.PickRoleID();
             role.typeID = tm.typeID;
             role.typeName = tm.typeName;
             role.allyStatus = allyStatus;
@@ -99,7 +100,9 @@ namespace NJM {
 
             bullet.Inject(mod);
 
-            bullet.id = ctx.idService.PickBulletID();
+            // - Basic
+            bullet.idSig.entityType = EntityType.Bullet;
+            bullet.idSig.id = ctx.idService.PickBulletID();
             bullet.typeID = tm.typeID;
             bullet.allyStatus = allyStatus;
 

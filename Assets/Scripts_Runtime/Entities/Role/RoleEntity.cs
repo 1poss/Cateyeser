@@ -5,7 +5,7 @@ namespace NJM {
 
     public class RoleEntity : MonoBehaviour {
 
-        public int id;
+        public IDSignature idSig;
         public int typeID;
         public string typeName;
         public AllyStatus allyStatus;
