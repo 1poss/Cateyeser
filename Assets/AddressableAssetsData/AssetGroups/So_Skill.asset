@@ -21,6 +21,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - So_Skill
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e0fe953417bdaa4a890e4f4d29c7fbe
+    m_Address: So_Skill_20_ExFlashShoot
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e8fc6e70f0e1f114abfb682f54eb94a6
     m_Address: So_Skill_1_Melee
     m_ReadOnly: 0

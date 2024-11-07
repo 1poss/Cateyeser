@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 391609dca530d1743a444eb5816afbd1, type: 3}
+  m_Name: So_Bullet_20_ExFlashBullet
+  m_EditorClassIdentifier: 
+  tm:
+    typeID: 20
+    typeName: ExFlashBullet
+    modPrefab: {fileID: 2035600363588694115, guid: 6951e7ca0cac8ec4f8520b033fcf8dac, type: 3}
+    maintainSec: 5
+    restHitTimes: 1
+    isHitStop: 1
+    hitStopMaintainSec: 10
+    flyType: 1
+    flySpeed: 40
+    dmg: 1
+    effectorModel:
+      isHookFlash: 1
+      hookFlashSkill: {fileID: 11400000, guid: 9e0fe953417bdaa4a890e4f4d29c7fbe, type: 2}

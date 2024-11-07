@@ -29,3 +29,4 @@ MonoBehaviour:
     skillSos:
     - {fileID: 11400000, guid: e8fc6e70f0e1f114abfb682f54eb94a6, type: 2}
     - {fileID: 11400000, guid: 15ffe9876ce290d44a3dcfa9e00ed828, type: 2}
+    - {fileID: 11400000, guid: 9e0fe953417bdaa4a890e4f4d29c7fbe, type: 2}
