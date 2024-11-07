@@ -21,7 +21,7 @@ MonoBehaviour:
     isHitStop: 1
     hitStopMaintainSec: 10
     flyType: 1
-    flySpeed: 120
+    flySpeed: 40
     dmg: 1
     effectorModel:
       isHookFlash: 1

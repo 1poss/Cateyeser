@@ -159,6 +159,7 @@ namespace NJM {
             skill.typeName = tm.typeName;
 
             skill.castKey = tm.castKey;
+            skill.isResetCDBySpecialCondition = tm.isResetCDBySpecialCondition;
             skill.cdSec = tm.cdSec;
             skill.cdTimer = 0;
 

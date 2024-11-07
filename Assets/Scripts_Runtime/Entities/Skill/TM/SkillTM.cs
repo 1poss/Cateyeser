@@ -11,6 +11,7 @@ namespace NJM.Template {
 
         // - Cast
         public SkillCastKey castKey;
+        public bool isResetCDBySpecialCondition;
         public float cdSec;
 
         // - Actions

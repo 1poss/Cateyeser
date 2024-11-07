@@ -12,6 +12,7 @@ namespace NJM {
 
         // ==== Cast ====
         public SkillCastKey castKey;
+        public bool isResetCDBySpecialCondition;
         public float cdSec;
         public float cdTimer;
         // 2. Cast Condition: MP, CD, Grounded, etc.
@@ -21,6 +22,10 @@ namespace NJM {
 
         public SkillSubEntity() {
             actions = new List<SkillActionModel>(4);
+        }
+
+        public void CD_Reset() {
+            cdTimer = cdSec;
         }
 
     }

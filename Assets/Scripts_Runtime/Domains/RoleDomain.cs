@@ -171,7 +171,7 @@ namespace NJM.Domains {
             }
 
             // Flash To: Hooked by Bullet/Building/Buff
-            if (Skill_TryFlashTo(ctx, role, nextSkill.typeID)) {
+            if (Skill_TryFlashTo(ctx, role, nextSkill)) {
                 return;
             }
 
@@ -180,13 +180,13 @@ namespace NJM.Domains {
 
         }
 
-        static bool Skill_TryFlashTo(GameContext ctx, RoleEntity role, int skillTypeID) {
+        static bool Skill_TryFlashTo(GameContext ctx, RoleEntity role, SkillSubEntity skill) {
             // TODO: Building / Buff
 
             // - Bullet
-            BulletEntity bullet = ctx.bulletRepository.GetHookFlash(role.idSig, skillTypeID);
+            BulletEntity bullet = ctx.bulletRepository.GetHookFlash(role.idSig, skill.typeID);
             if (bullet != null) {
-                FlashTo_Bullet(ctx, role, bullet);
+                FlashTo_Bullet(ctx, role, bullet, skill);
                 return true;
             }
 
@@ -194,9 +194,12 @@ namespace NJM.Domains {
 
         }
 
-        static void FlashTo_Bullet(GameContext ctx, RoleEntity role, BulletEntity bullet) {
+        static void FlashTo_Bullet(GameContext ctx, RoleEntity role, BulletEntity bullet, SkillSubEntity skill) {
             // - Flash
             role.TF_Root_Set_Pos(bullet.TF_Head_Pos());
+
+            // - Skill: CD
+            skill.CD_Reset();
 
             // - Destroy Bullet
             BulletDomain.Unspawn(ctx, bullet);
@@ -226,7 +229,11 @@ namespace NJM.Domains {
             var skillStateCom = role.SkillStateComponent;
             skillStateCom.CastBegin(skill);
 
-            skill.cdTimer = skill.cdSec;
+            if (skill.isResetCDBySpecialCondition) {
+
+            } else {
+                skill.CD_Reset();
+            }
         }
 
         public static void SkillState_Action_Execute(GameContext ctx, RoleEntity role, float fixdt) {
