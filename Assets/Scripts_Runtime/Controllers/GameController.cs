@@ -51,7 +51,11 @@ namespace NJM.Controllers {
 
             // - Role
             if (owner != null) {
-                RoleFSMDomain.Tick(ctx, owner, fixdt);
+                int roleCount = ctx.roleRepository.TakeAll(out var roles);
+                for (int i = 0; i < roleCount; i += 1) {
+                    var role = roles[i];
+                    RoleFSMDomain.Tick(ctx, role, fixdt);
+                }
             }
 
             // - Bullet

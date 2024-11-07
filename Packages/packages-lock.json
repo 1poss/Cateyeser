@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.deltation.toon-shader": {
+      "version": "ssh://git@github.com/Delt06/urp-toon-shader.git?path=Packages/com.deltation.toon-shader#2021.3",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.render-pipelines.universal": "12.1.6"
+      },
+      "hash": "512a3be1b28ed6cedc17c257d7df68a583e49d45"
+    },
     "com.gamearki.gamefunctions": {
       "version": "ssh://git@github.com/gamearki/gamefunctions.git?path=Assets",
       "depth": 0,
@@ -98,6 +107,15 @@
       "depth": 2,
       "source": "registry",
       "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.postprocessing": {
+      "version": "3.4.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.physics": "1.0.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.profiling.core": {

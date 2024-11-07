@@ -58,7 +58,9 @@ namespace NJM {
 
             // ==== Render ====
             Vector3 rendForward = (logic_head.transform.forward + logic_bodyTF.forward) / 2f;
-            rend_head.transform.forward = rendForward;
+            if (rend_head != null) {
+                rend_head.transform.forward = rendForward;
+            }
 
             // Human Like
             if (rend_leftHand != null && rend_rightHand != null) {
@@ -82,6 +84,10 @@ namespace NJM {
 
         public void Anim_Play_GetHit() {
             anim.CrossFade(RoleAnimationConst.GET_HIT, 0.1f);
+        }
+
+        public void Anim_Play_Die() {
+            anim.CrossFade(RoleAnimationConst.DIE, 0.1f);
         }
 
     }

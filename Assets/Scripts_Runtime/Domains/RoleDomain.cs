@@ -34,6 +34,11 @@ namespace NJM.Domains {
 
             return role;
         }
+
+        public static void Unspawn(GameContext ctx, RoleEntity role) {
+            ctx.roleRepository.Remove(role);
+            GameObject.Destroy(role.gameObject);
+        }
         #endregion
 
         #region Physics
@@ -225,6 +230,26 @@ namespace NJM.Domains {
                 var bullet = BulletDomain.Spawn(ctx, action.shootBulletSO.tm.typeID, role.allyStatus, role.Mod.logic_muzzle.position, fwd);
                 bullet.parentIDSig = role.idSig;
             }
+        }
+        #endregion
+
+        #region GetHit
+        public static void GetHit(GameContext ctx, RoleEntity role, int dmg) {
+            var victimAttrCom = role.AttributeComponent;
+            int finalHp = victimAttrCom.Hp - dmg;
+            if (finalHp <= 0) {
+                finalHp = 0;
+                RoleFSMDomain.Dead_Enter(ctx, role);
+            } else {
+                role.Mod.Anim_Play_GetHit();
+                RoleDomain.Attr_SetHp(ctx, role, finalHp);
+            }
+        }
+        #endregion
+
+        #region Attribute
+        public static void Attr_SetHp(GameContext ctx, RoleEntity role, int hp) {
+            role.AttributeComponent.SetHp(hp);
         }
         #endregion
 

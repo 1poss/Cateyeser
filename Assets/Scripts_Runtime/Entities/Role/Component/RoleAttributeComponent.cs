@@ -50,6 +50,19 @@ namespace NJM {
             this.fpsAimMultiplier = fpsAimMultiplier;
         }
 
+        // - FSM
+        float fsm_deadMaintainSec;
+        public float FSM_DeadMaintainSec => fsm_deadMaintainSec;
+        public void FSM_SetDeadMaintainSec(float deadMaintainSec) {
+            this.fsm_deadMaintainSec = deadMaintainSec;
+        }
+
+        float fsm_getHitMaintainSec;
+        public float FSM_GetHitMaintainSec => fsm_getHitMaintainSec;
+        public void FSM_SetGetHitMaintainSec(float getHitMaintainSec) {
+            this.fsm_getHitMaintainSec = getHitMaintainSec;
+        }
+
         public RoleAttributeComponent() {}
     }
 }

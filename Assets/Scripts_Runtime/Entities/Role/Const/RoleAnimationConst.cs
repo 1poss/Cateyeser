@@ -6,6 +6,7 @@ namespace NJM {
 
         public const string IDLE = "Idle";
         public const string GET_HIT = "GetHit";
+        public const string DIE = "Die";
 
     }
 

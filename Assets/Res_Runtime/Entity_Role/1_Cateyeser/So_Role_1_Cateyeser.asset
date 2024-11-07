@@ -15,11 +15,15 @@ MonoBehaviour:
   tm:
     typeID: 1
     typeName: "\u732B\u773C"
+    roleType: 0
     modPrefab: {fileID: 2317477763023318772, guid: c9814c4f57de0234494ad6bcb92785cc, type: 3}
+    hp: 0
+    mass: 0
     moveSpeed: 5.5
     jumpForce: 6
     fallingG: 14
     fallingMaxSpeed: 40
     fpsAimMultiplier: 3
+    deadMaintainSec: 1
     skillSos:
     - {fileID: 11400000, guid: e8fc6e70f0e1f114abfb682f54eb94a6, type: 2}

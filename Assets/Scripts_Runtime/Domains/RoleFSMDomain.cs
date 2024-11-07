@@ -7,17 +7,21 @@ namespace NJM.Domains {
 
         public static void Tick(GameContext ctx, RoleEntity role, float fixdt) {
             var fsm = role.FSMComponent;
-            if (fsm.Status == RoleFSMStatus.Normal) {
+            var status = fsm.Status;
+            if (status == RoleFSMStatus.Normal) {
                 Normal_Tick(ctx, role, fixdt);
-            } else if (fsm.Status == RoleFSMStatus.Die) {
-
-            } else if (fsm.Status == RoleFSMStatus.Wait) {
+            } else if (status == RoleFSMStatus.Dead) {
+                Dead_Tick(ctx, role, fixdt);
+            } else if (status == RoleFSMStatus.GetHit) {
+                GetHit_Tick(ctx, role, fixdt);
+            } else if (status == RoleFSMStatus.Wait) {
 
             } else {
                 Debug.LogError("RoleFSMDomain.Tick: Unknown FSM status");
             }
         }
 
+        #region Normal
         public static void Normal_Enter(GameContext ctx, RoleEntity role) {
             role.FSMComponent.Normal_Enter();
         }
@@ -41,5 +45,40 @@ namespace NJM.Domains {
             RoleDomain.Skill_TryCast(ctx, role);
             RoleDomain.SkillState_Action_Execute(ctx, role, fixdt);
         }
+        #endregion
+
+        #region GetHit
+        public static void GetHit_Enter(GameContext ctx, RoleEntity role) {
+            role.FSMComponent.GetHit_Enter(role.AttributeComponent.FSM_GetHitMaintainSec);
+
+            // - Anim
+            role.Mod.Anim_Play_GetHit();
+        }
+
+        static void GetHit_Tick(GameContext ctx, RoleEntity role, float fixdt) {
+            var state = role.FSMComponent.GetHitStateModel;
+            state.maintainTimer -= fixdt;
+            if (state.maintainTimer <= 0) {
+                Normal_Enter(ctx, role);
+            }
+        }
+        #endregion
+
+        #region Dead
+        public static void Dead_Enter(GameContext ctx, RoleEntity role) {
+            role.FSMComponent.Die_Enter(role.AttributeComponent.FSM_DeadMaintainSec);
+
+            // - Anim
+            role.Mod.Anim_Play_Die();
+        }
+
+        static void Dead_Tick(GameContext ctx, RoleEntity role, float fixdt) {
+            var state = role.FSMComponent.DeadStateModel;
+            state.maintainTimer -= fixdt;
+            if (state.maintainTimer <= 0) {
+                RoleDomain.Unspawn(ctx, role);
+            }
+        }
+        #endregion
     }
 }

@@ -3,7 +3,8 @@ namespace NJM {
     public enum RoleFSMStatus {
         None,
         Normal,
-        Die,
+        GetHit,
+        Dead,
         Wait,
     }
 

@@ -27,6 +27,10 @@ namespace NJM {
             all.Remove(id);
         }
 
+        public void Remove(RoleEntity role) {
+            all.Remove(role.idSig.id);
+        }
+
         public void Foreach(Action<RoleEntity> action) {
             foreach (var role in all.Values) {
                 action.Invoke(role);

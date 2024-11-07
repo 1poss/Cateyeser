@@ -78,7 +78,7 @@ namespace NJM.Domains {
             var attrCom = bullet.attrComponent;
 
             // - Damage
-            victimRole.Mod.Anim_Play_GetHit();
+            RoleDomain.GetHit(ctx, victimRole, attrCom.dmg);
 
             // - Hit Times
             attrCom.restHitTimes -= 1;

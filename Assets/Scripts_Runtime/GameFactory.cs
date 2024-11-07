@@ -68,6 +68,9 @@ namespace NJM {
 
             attrCom.SetFpsAimMultiplier(tm.fpsAimMultiplier);
 
+            attrCom.FSM_SetDeadMaintainSec(tm.fsm_deadMaintainSec);
+            attrCom.FSM_SetGetHitMaintainSec(tm.fsm_getHitMaintainSec);
+
             // - Skill
             var skillSlotCom = role.SkillSlotComponent;
             var skillSos = tm.skillSos;
