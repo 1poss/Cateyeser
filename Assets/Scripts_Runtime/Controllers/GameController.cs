@@ -54,6 +54,7 @@ namespace NJM.Controllers {
                 int roleCount = ctx.roleRepository.TakeAll(out var roles);
                 for (int i = 0; i < roleCount; i += 1) {
                     var role = roles[i];
+                    RoleAIDomain.Tick(ctx, role, fixdt);
                     RoleFSMDomain.Tick(ctx, role, fixdt);
                 }
             }

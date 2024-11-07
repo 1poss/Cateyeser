@@ -34,6 +34,9 @@ namespace NJM {
         RoleFSMComponent fsmComponent;
         public RoleFSMComponent FSMComponent => fsmComponent;
 
+        RoleAIComponent aiComponent;
+        public RoleAIComponent AIComponent => aiComponent;
+
         public bool hasAimHitPoint;
         public Vector3 aimHitPoint;
 
@@ -46,6 +49,7 @@ namespace NJM {
             skillSlotComponent = new RoleSkillSlotComponent();
 
             fsmComponent = new RoleFSMComponent();
+            aiComponent = new RoleAIComponent();
 
             moveComponent.Inject(rb);
 
