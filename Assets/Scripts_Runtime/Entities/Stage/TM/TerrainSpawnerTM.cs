@@ -4,7 +4,7 @@ using UnityEngine;
 namespace NJM.Template {
 
     [Serializable]
-    public struct TerrainSpawner {
+    public struct TerrainSpawnerTM {
 
         public Vector3 pos;
 

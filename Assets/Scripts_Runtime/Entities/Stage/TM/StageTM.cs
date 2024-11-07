@@ -9,13 +9,14 @@ namespace NJM.Template {
         public StageSignature stageSignature;
 
         // - Role Spawner
+        public RoleSpawnerTM[] roleSpawners;
 
         // - Prop Spawner(Entrance)
 
         // - Camera Spawner
 
         // - Terrain Spawner
-        public TerrainSpawner[] terrainSpawners;
+        public TerrainSpawnerTM[] terrainSpawners;
 
         // - Light Spawner
 

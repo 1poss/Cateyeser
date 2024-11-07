@@ -21,18 +21,38 @@ namespace NJM.EditorStage {
 
             ref var tm = ref so.tm;
 
+            // - Basic
             tm.stageSignature = stageSignature;
 
-            var terrains = transform.GetComponentsInChildren<Terrain>();
-            TerrainSpawner[] spawners = new TerrainSpawner[terrains.Length];
-            for (int i = 0; i < terrains.Length; i += 1) {
-                var terrain = terrains[i];
-                TerrainSpawner spawner = new TerrainSpawner();
-                spawner.pos = terrain.transform.position;
-                spawner.terrainData = terrain.terrainData;
-                spawners[i] = spawner;
+            // - Role Spawner
+            {
+                var roleSpawnerEMs = transform.GetComponentsInChildren<RoleSpawnerEM>();
+                RoleSpawnerTM[] spawners = new RoleSpawnerTM[roleSpawnerEMs.Length];
+                for (int i = 0; i < roleSpawnerEMs.Length; i += 1) {
+                    var roleSpawnerEM = roleSpawnerEMs[i];
+                    roleSpawnerEM.Bake();
+                    RoleSpawnerTM spawner = new RoleSpawnerTM();
+                    spawner.so = roleSpawnerEM.spawnerTM.so;
+                    spawner.pos = roleSpawnerEM.transform.position;
+                    spawner.forward = roleSpawnerEM.transform.forward;
+                    spawners[i] = spawner;
+                }
+                tm.roleSpawners = spawners;
             }
-            tm.terrainSpawners = spawners;
+
+            // - Terrain Spawner
+            {
+                var terrains = transform.GetComponentsInChildren<Terrain>();
+                TerrainSpawnerTM[] spawners = new TerrainSpawnerTM[terrains.Length];
+                for (int i = 0; i < terrains.Length; i += 1) {
+                    var terrain = terrains[i];
+                    TerrainSpawnerTM spawner = new TerrainSpawnerTM();
+                    spawner.pos = terrain.transform.position;
+                    spawner.terrainData = terrain.terrainData;
+                    spawners[i] = spawner;
+                }
+                tm.terrainSpawners = spawners;
+            }
 
             EditorUtility.SetDirty(so);
 

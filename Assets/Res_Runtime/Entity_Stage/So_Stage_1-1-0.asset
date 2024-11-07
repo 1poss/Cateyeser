@@ -18,6 +18,11 @@ MonoBehaviour:
       chapter: 1
       stage: 1
       sub_stage: 0
+    roleSpawners:
+    - so: {fileID: 11400000, guid: 2ccc37a774987794f9a9dd1b27bcb8d6, type: 2}
+      pos: {x: 27.42, y: 0, z: 14.9}
+      forward: {x: -0.8191521, y: 0, z: -0.57357657}
+      allyStatus: 0
     terrainSpawners:
     - pos: {x: 0, y: 0, z: 0}
       terrainData: {fileID: 15600000, guid: 493bd99f6da53ad49bac7b06ed475937, type: 2}

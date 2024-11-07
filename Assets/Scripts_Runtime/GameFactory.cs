@@ -7,27 +7,18 @@ namespace NJM {
     public static class GameFactory {
 
         #region Stage
-        public static StageEntity Stage_Create(GameContext ctx, StageSignature stageSignature) {
+        public static StageEntity Stage_Create_PureOne(GameContext ctx, StageSignature stageSignature, out StageTM tm) {
             bool has = ctx.assetsCore.So_Stage_TryGet(stageSignature, out var so);
             if (!has) {
                 Debug.LogError($"StageDomain.Spawn: StageSignature not found: {stageSignature}");
+                tm = default;
                 return null;
             }
 
-            var tm = so.tm;
+            tm = so.tm;
 
             StageEntity stage = new StageEntity();
             stage.stageSignature = stageSignature;
-
-            // - Terrain
-            var terrainSpawners = tm.terrainSpawners;
-            for (int i = 0; i < terrainSpawners.Length; i += 1) {
-                var spawner = terrainSpawners[i];
-                var terrain = Terrain.CreateTerrainGameObject(spawner.terrainData);
-                terrain.transform.position = spawner.pos;
-                terrain.gameObject.layer = LayerConst.GROUND;
-                stage.terrains.Add(terrain.GetComponent<Terrain>());
-            }
 
             return stage;
 

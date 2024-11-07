@@ -53,15 +53,20 @@ namespace NJM.Domains {
             int layer = 1 << LayerConst.GROUND | 1 << LayerConst.ROLE | 1 << LayerConst.BULLET;
             int count = Physics.RaycastNonAlloc(mainCam.transform.position, mainCam.transform.forward, tmp_aimCheckHits, 100, layer);
             if (count > 0) {
+                RaycastHit nearestHit = default;
+                float nearestDistSqr = float.MaxValue;
                 for (int i = 0; i < count; i += 1) {
                     var hit = tmp_aimCheckHits[i];
                     var hitOwner = hit.collider.GetComponentInParent<RoleEntity>();
                     if (hitOwner != null && hitOwner.IsOwner()) {
                         continue;
                     }
-                    role.hasAimHitPoint = true;
-                    role.aimHitPoint = tmp_aimCheckHits[0].point;
-                    break;
+                    if (hit.distance * hit.distance < nearestDistSqr) {
+                        nearestHit = hit;
+                        nearestDistSqr = hit.distance * hit.distance;
+                        role.hasAimHitPoint = true;
+                        role.aimHitPoint = hit.point;
+                    }
                 }
             } else {
                 role.hasAimHitPoint = false;
