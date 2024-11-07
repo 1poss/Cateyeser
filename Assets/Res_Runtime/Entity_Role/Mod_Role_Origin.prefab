@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4686730075215637254}
   - component: {fileID: 9077305206524806335}
   - component: {fileID: 8451303188366429389}
-  - component: {fileID: 4250988198336193058}
   m_Layer: 3
   m_Name: Muzzle_Mesh
   m_TagString: Untagged
@@ -87,27 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4250988198336193058
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274354520867631269}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &323772907582459423
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,7 +389,6 @@ GameObject:
   - component: {fileID: 8171888011042426437}
   - component: {fileID: 3466280205457956744}
   - component: {fileID: 6959983027858697921}
-  - component: {fileID: 6279991065127940522}
   m_Layer: 3
   m_Name: Gun_Mesh
   m_TagString: Untagged
@@ -487,27 +464,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6279991065127940522
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2259311573727303784}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2374315510711140507
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,7 +890,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rend_bodyTF: {fileID: 4321287818675814553}
   rend_head: {fileID: 2661994419259580515}
-  rend_bodyMesh: {fileID: 5380376216728445464}
   rend_leftHand: {fileID: 7122424441521631559}
   rend_rightHand: {fileID: 1273804926474743506}
   logic_bodyTF: {fileID: 8255670375720994342}

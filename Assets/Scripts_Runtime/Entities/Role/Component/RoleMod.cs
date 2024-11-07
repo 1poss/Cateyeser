@@ -7,7 +7,6 @@ namespace NJM {
 
         [SerializeField] Transform rend_bodyTF;
         [SerializeField] MeshRenderer rend_head;
-        [SerializeField] MeshRenderer rend_bodyMesh;
         [SerializeField] MeshRenderer rend_leftHand;
         [SerializeField] MeshRenderer rend_rightHand;
 
@@ -37,7 +36,7 @@ namespace NJM {
         // 注: axisX 不需要动头
         // 如需拆解TPS和FPS, 后续再动
         public void Head_Rotate(Vector2 lookAxis) {
-            // Logic
+            // ==== Logic ====
             float angleX = logic_head.transform.localEulerAngles.x;
             angleX -= lookAxis.y;
             if (angleX > 180) {
@@ -49,13 +48,21 @@ namespace NJM {
 
             Vector3 rotation = new Vector3(angleX, 0, 0);
             logic_head.transform.localEulerAngles = rotation;
-            logic_rightHandTF.transform.localEulerAngles = rotation;
 
-            // Render
+            // Human Like
+            if (logic_rightHandTF != null) {
+                logic_rightHandTF.transform.localEulerAngles = rotation;
+            }
+
+            // ==== Render ====
             Vector3 rendForward = (logic_head.transform.forward + logic_bodyTF.forward) / 2f;
             rend_head.transform.forward = rendForward;
-            rend_leftHand.transform.forward = rendForward;
-            rend_rightHand.transform.forward = rendForward;
+
+            // Human Like
+            if (rend_leftHand != null && rend_rightHand != null) {
+                rend_leftHand.transform.forward = rendForward;
+                rend_rightHand.transform.forward = rendForward;
+            }
         }
 
         public Vector3 Head_TF_Pos() {
