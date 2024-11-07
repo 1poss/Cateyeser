@@ -888,8 +888,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185d19c5976f5a846b6b2fe3fafed34a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   rend_bodyTF: {fileID: 4321287818675814553}
-  rend_head: {fileID: 2661994419259580515}
+  rend_head: {fileID: 6585919842173212428}
   rend_leftHand: {fileID: 7122424441521631559}
   rend_rightHand: {fileID: 1273804926474743506}
   logic_bodyTF: {fileID: 8255670375720994342}

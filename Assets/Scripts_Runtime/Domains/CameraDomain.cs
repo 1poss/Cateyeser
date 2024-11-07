@@ -14,11 +14,11 @@ namespace NJM.Domains {
             }
         }
 
-        const float originDistance = 6;
         static void Follow_FPS(GameContext ctx, RoleEntity owner, float dt) {
 
             // TODO: 相机防前穿墙
 
+            const float originDistance = 4;
             float fpsAimMultiplier = owner.AttributeComponent.FpsAimMultiplier;
             float distance = originDistance * fpsAimMultiplier;
 
@@ -36,7 +36,7 @@ namespace NJM.Domains {
                 }
             }
 
-            Vector3 offset = new Vector3(0, 1, -distance + nearPlane * cam.aspect * 2);
+            Vector3 offset = new Vector3(-1f, 0.5f, -distance + nearPlane * cam.aspect * 2);
 
             CameraFollowSingleArgs args;
             args.targetPos = headPos;
@@ -49,11 +49,12 @@ namespace NJM.Domains {
         static void Follow_TPS(GameContext ctx, RoleEntity owner, float dt) {
 
             // TODO: 相机防后穿墙
+            const float originDistance = 3f;
 
             Vector3 headPos = owner.TF_Head_Pos();
             Vector3 headForward = owner.TF_Head_Forward();
 
-            Vector3 offset = new Vector3(0, 1, originDistance);
+            Vector3 offset = new Vector3(-1f, 0.5f, originDistance);
             ctx.cameraCore.Follow_Single_Offset_Set(CameraCore.tpID, offset);
 
             CameraFollowSingleArgs args;

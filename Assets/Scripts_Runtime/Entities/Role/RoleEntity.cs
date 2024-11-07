@@ -112,9 +112,12 @@ namespace NJM {
         public void Move_HorizontalByVelocity(Vector3 moveDir, float speed) {
             float y = rb.linearVelocity.y;
             Vector3 vel = rb.linearVelocity;
-            vel = moveDir * speed;
+            vel = moveDir.normalized * speed;
             vel.y = y;
             rb.linearVelocity = vel;
+
+            // Animation
+            mod.Anim_Set_MoveSpeed(moveDir, moveDir.sqrMagnitude);
         }
 
     }

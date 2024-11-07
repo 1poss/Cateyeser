@@ -28,7 +28,7 @@ namespace NJM.Domains {
 
             // Camera: TPS
             {
-                Vector3 followOffset = new Vector3(0, 2, 6);
+                Vector3 followOffset = new Vector3(0, 1.6f, 2f);
                 ctx.cameraCore.Follow_Single_Setup(CameraCore.tpID, CameraFollowType.FollowAndRound, role.TF_Head_Pos(), role.TF_Head_Forward(), followOffset, 100);
             }
 

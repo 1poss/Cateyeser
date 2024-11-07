@@ -8,7 +8,7 @@ namespace NJM {
         [SerializeField] Animator anim;
 
         [SerializeField] Transform rend_bodyTF;
-        [SerializeField] MeshRenderer rend_head;
+        [SerializeField] Transform rend_head;
         [SerializeField] MeshRenderer rend_leftHand;
         [SerializeField] MeshRenderer rend_rightHand;
 
@@ -78,6 +78,7 @@ namespace NJM {
         }
 
         // - Animation
+        #region Animation: Play
         public void Anim_Play_Idle() {
             anim.CrossFade(RoleAnimationConst.IDLE, 0.1f);
         }
@@ -89,6 +90,16 @@ namespace NJM {
         public void Anim_Play_Die() {
             anim.CrossFade(RoleAnimationConst.DIE, 0.1f);
         }
+        #endregion
+
+        #region Animation: Parameter
+        public void Anim_Set_MoveSpeed(Vector2 moveDir, float speed) {
+            moveDir.Normalize();
+            anim.SetFloat("F_XDir", moveDir.x);
+            anim.SetFloat("F_YDir", moveDir.y);
+            anim.SetFloat("F_MoveSpeed", speed);
+        }
+        #endregion
 
     }
 }
