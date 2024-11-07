@@ -15,11 +15,15 @@ namespace NJM {
         public BulletMod mod;
         public BulletAttributeComponent attrComponent;
 
+        BulletFSMComponent fsmComponent;
+        public BulletFSMComponent FSMComponent => fsmComponent;
+
         public Vector3 originPos;
         public Vector3 originForward;
 
         public void Ctor() {
             attrComponent = new BulletAttributeComponent();
+            fsmComponent = new BulletFSMComponent();
         }
 
         public void Inject(BulletMod mod) {
@@ -30,6 +34,11 @@ namespace NJM {
             rb.linearVelocity = dir * moveSpeed;
             // Rotate
             transform.rotation = Quaternion.LookRotation(dir);
+        }
+
+        public void RB_MakeStatic() {
+            rb.linearVelocity = Vector3.zero;
+            rb.isKinematic = true;
         }
 
         public void TF_Set_Pos(Vector3 pos) {

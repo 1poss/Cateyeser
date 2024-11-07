@@ -121,6 +121,8 @@ namespace NJM {
             attrCom.maintainTimer = tm.maintainSec;
 
             attrCom.restHitTimes = tm.restHitTimes;
+            attrCom.isHitDone = tm.isHitStop;
+            attrCom.fsm_doneMaintainSec = tm.hitStopMaintainSec;
 
             attrCom.flyType = tm.flyType;
             attrCom.flySpeed = tm.flySpeed;

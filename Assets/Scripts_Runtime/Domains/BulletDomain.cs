@@ -11,7 +11,14 @@ namespace NJM.Domains {
 
             ctx.bulletRepository.Add(bullet);
 
+            BulletFSMDomain.Normal_Enter(ctx, bullet);
+
             return bullet;
+        }
+
+        public static void Unspawn(GameContext ctx, BulletEntity bullet) {
+            ctx.bulletRepository.Remove(bullet);
+            GameObject.Destroy(bullet.gameObject);
         }
         #endregion
 
@@ -71,7 +78,10 @@ namespace NJM.Domains {
         #region Hit
         public static void Hit_Ground(GameContext ctx, BulletEntity bullet, RaycastHit hitTarget) {
             bullet.TF_Set_Pos(hitTarget.point);
-            Die_There(ctx, bullet, hitTarget.point);
+            var attrCom = bullet.attrComponent;
+            if (attrCom.isHitDone) {
+                BulletFSMDomain.Done_Enter(ctx, bullet);
+            }
         }
 
         static void Hit_Role(GameContext ctx, BulletEntity bullet, RoleEntity victimRole) {
@@ -90,8 +100,15 @@ namespace NJM.Domains {
 
         #region Die
         public static void Die_There(GameContext ctx, BulletEntity bullet, Vector3 diePos) {
-            ctx.bulletRepository.Remove(bullet);
-            GameObject.Destroy(bullet.gameObject);
+
+            // SFX
+
+            // VFX
+
+            // - Die Explosion
+
+            Unspawn(ctx, bullet);
+
         }
         #endregion
 

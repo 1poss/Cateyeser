@@ -18,6 +18,8 @@ MonoBehaviour:
     modPrefab: {fileID: 2035600363588694115, guid: a794763891243c74392a1c8ac00d1e7a, type: 3}
     maintainSec: 5
     restHitTimes: 1
+    isHitStop: 1
+    hitStopMaintainSec: 10
     flyType: 1
     flySpeed: 120
     dmg: 1

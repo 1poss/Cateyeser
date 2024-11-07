@@ -17,6 +17,8 @@ namespace NJM.Template {
 
         // ==== Hit ====
         public int restHitTimes;
+        public bool isHitStop;
+        public float hitStopMaintainSec;
 
         // ==== Attribute ====
         public BulletFlyType flyType;

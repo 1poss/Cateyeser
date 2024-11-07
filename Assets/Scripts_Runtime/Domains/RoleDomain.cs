@@ -62,10 +62,19 @@ namespace NJM.Domains {
                 float nearestDistSqr = float.MaxValue;
                 for (int i = 0; i < count; i += 1) {
                     var hit = tmp_aimCheckHits[i];
+
+                    // 排除自己
                     var hitOwner = hit.collider.GetComponentInParent<RoleEntity>();
                     if (hitOwner != null && hitOwner.IsOwner()) {
                         continue;
                     }
+
+                    var hitBullet = hit.collider.GetComponentInParent<BulletEntity>();
+                    if (hitBullet != null && hitBullet.allyStatus == role.allyStatus) {
+                        continue;
+                    }
+
+                    // 检测最近的
                     if (hit.distance * hit.distance < nearestDistSqr) {
                         nearestHit = hit;
                         nearestDistSqr = hit.distance * hit.distance;
