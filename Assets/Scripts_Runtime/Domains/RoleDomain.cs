@@ -216,12 +216,17 @@ namespace NJM.Domains {
 
         public static bool Skill_IsAllowCast(GameContext ctx, RoleEntity role, SkillSubEntity skill) {
             // TODO: cd, mp, grounded, etc
+            if (skill.cdTimer > 0) {
+                return false;
+            }
             return true;
         }
 
         public static void Skill_Cast(GameContext ctx, RoleEntity role, SkillSubEntity skill) {
             var skillStateCom = role.SkillStateComponent;
             skillStateCom.CastBegin(skill);
+
+            skill.cdTimer = skill.cdSec;
         }
 
         public static void SkillState_Action_Execute(GameContext ctx, RoleEntity role, float fixdt) {

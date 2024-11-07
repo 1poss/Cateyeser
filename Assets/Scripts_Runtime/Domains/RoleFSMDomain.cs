@@ -8,6 +8,9 @@ namespace NJM.Domains {
         public static void Tick(GameContext ctx, RoleEntity role, float fixdt) {
             var fsm = role.FSMComponent;
             var status = fsm.Status;
+
+            Any_Tick(ctx, role, fixdt);
+
             if (status == RoleFSMStatus.Normal) {
                 Normal_Tick(ctx, role, fixdt);
             } else if (status == RoleFSMStatus.Dead) {
@@ -20,6 +23,21 @@ namespace NJM.Domains {
                 Debug.LogError("RoleFSMDomain.Tick: Unknown FSM status");
             }
         }
+
+        #region Any
+        static void Any_Tick(GameContext ctx, RoleEntity role, float fixdt) {
+            // Skill: CD
+            var skillCom = role.SkillSlotComponent;
+            skillCom.Foreach(value => {
+                value.cdTimer -= fixdt;
+                if (value.cdTimer < 0) {
+                    value.cdTimer = 0;
+                }
+            });
+
+            // TOOD: Buff
+        }
+        #endregion
 
         #region Normal
         public static void Normal_Enter(GameContext ctx, RoleEntity role) {

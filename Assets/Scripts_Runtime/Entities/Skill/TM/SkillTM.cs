@@ -11,6 +11,7 @@ namespace NJM.Template {
 
         // - Cast
         public SkillCastKey castKey;
+        public float cdSec;
 
         // - Actions
         public SkillActionTM[] actionTMs;

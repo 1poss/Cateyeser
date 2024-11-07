@@ -12,6 +12,8 @@ namespace NJM {
 
         // ==== Cast ====
         public SkillCastKey castKey;
+        public float cdSec;
+        public float cdTimer;
         // 2. Cast Condition: MP, CD, Grounded, etc.
 
         // ==== Actions ====

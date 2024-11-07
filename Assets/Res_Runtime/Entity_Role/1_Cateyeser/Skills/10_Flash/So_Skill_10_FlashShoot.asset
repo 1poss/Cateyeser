@@ -16,6 +16,7 @@ MonoBehaviour:
     typeID: 10
     typeName: FlashShoot1
     castKey: 2
+    cdSec: 5
     actionTMs:
     - maintainSec: 0.23333333
       hasShootBullet: 1

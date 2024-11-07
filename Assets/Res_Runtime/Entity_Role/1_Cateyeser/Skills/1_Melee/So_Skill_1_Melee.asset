@@ -16,6 +16,7 @@ MonoBehaviour:
     typeID: 1
     typeName: Melee
     castKey: 1
+    cdSec: 1
     actionTMs:
     - maintainSec: 0.23333333
       hasShootBullet: 1

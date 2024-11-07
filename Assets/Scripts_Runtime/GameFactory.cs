@@ -159,6 +159,8 @@ namespace NJM {
             skill.typeName = tm.typeName;
 
             skill.castKey = tm.castKey;
+            skill.cdSec = tm.cdSec;
+            skill.cdTimer = 0;
 
             // - Actions
             var actionTMs = tm.actionTMs;
