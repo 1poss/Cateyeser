@@ -23,3 +23,6 @@ MonoBehaviour:
     flyType: 1
     flySpeed: 120
     dmg: 1
+    effectorModel:
+      isHookFlash: 1
+      hookFlashSkill: {fileID: 11400000, guid: 15ffe9876ce290d44a3dcfa9e00ed828, type: 2}

@@ -28,6 +28,13 @@ namespace NJM {
             return all[id];
         }
 
+        public BulletEntity GetHookFlash(IDSignature parent, int skillTypeID) {
+            return all.Values.FirstOrDefault(
+                b => b.parentIDSig == parent && 
+                b.effectorModel.isHookFlash &&
+                b.effectorModel.hookFlashSkill.tm.typeID == skillTypeID);
+        }
+
         public int TakeAll(out BulletEntity[] result) {
             if (all.Count > tempAll.Length) {
                 tempAll = new BulletEntity[all.Count];

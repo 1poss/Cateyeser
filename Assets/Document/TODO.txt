@@ -32,8 +32,8 @@
     - 击中(销毁)
         - 特效
 - 子弹 FSM
-    - Normal
-    - Done
+    √ Normal
+    √ Done
 - 特效模块
     - 无Hook特效
     - Hook特效

@@ -63,6 +63,11 @@ namespace NJM {
             return mod.Head_TF_Pos();
         }
 
+        public void TF_Root_Set_Pos(Vector3 pos) {
+            transform.position = pos;
+            rb.position = pos;
+        }
+
         public Vector3 TF_Head_Forward() {
             return mod.Head_TF_Forward();
         }

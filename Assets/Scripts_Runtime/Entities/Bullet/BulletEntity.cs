@@ -18,6 +18,8 @@ namespace NJM {
         BulletFSMComponent fsmComponent;
         public BulletFSMComponent FSMComponent => fsmComponent;
 
+        public BulletEffectorModel effectorModel;
+
         public Vector3 originPos;
         public Vector3 originForward;
 

@@ -19,5 +19,5 @@ MonoBehaviour:
     actionTMs:
     - maintainSec: 0.23333333
       hasShootBullet: 1
-      shootBulletSO: {fileID: 11400000, guid: 23199f229ec8fd74491e90d2174d4626, type: 2}
+      shootBulletSO: {fileID: 11400000, guid: 883b1cc687ac54f4eb5d74df8cdf169e, type: 2}
       anim_name: Shoot

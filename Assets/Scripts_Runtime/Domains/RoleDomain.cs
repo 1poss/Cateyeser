@@ -162,7 +162,7 @@ namespace NJM.Domains {
                 inputCom.Skill3Axis_Reset();
             }
 
-            // Cancel
+            // Cancel To Skill
             ref SkillSubEntity nextSkill = ref skill;
             SkillCancelType cancelType = Skill_TryCancel(ctx, role, ref nextSkill);
             if (cancelType == SkillCancelType.DisableCancel) {
@@ -170,9 +170,36 @@ namespace NJM.Domains {
                 return;
             }
 
+            // Flash To: Hooked by Bullet/Building/Buff
+            if (Skill_TryFlashTo(ctx, role, nextSkill.typeID)) {
+                return;
+            }
+
             // 释放技能
             Skill_Cast(ctx, role, skill);
 
+        }
+
+        static bool Skill_TryFlashTo(GameContext ctx, RoleEntity role, int skillTypeID) {
+            // TODO: Building / Buff
+
+            // - Bullet
+            BulletEntity bullet = ctx.bulletRepository.GetHookFlash(role.idSig, skillTypeID);
+            if (bullet != null) {
+                FlashTo_Bullet(ctx, role, bullet);
+                return true;
+            }
+
+            return false;
+
+        }
+
+        static void FlashTo_Bullet(GameContext ctx, RoleEntity role, BulletEntity bullet) {
+            // - Flash
+            role.TF_Root_Set_Pos(bullet.TF_Head_Pos());
+
+            // - Destroy Bullet
+            BulletDomain.Unspawn(ctx, bullet);
         }
 
         public static SkillCancelType Skill_TryCancel(GameContext ctx, RoleEntity role, ref SkillSubEntity nextSkill) {
@@ -193,7 +220,6 @@ namespace NJM.Domains {
         }
 
         public static void Skill_Cast(GameContext ctx, RoleEntity role, SkillSubEntity skill) {
-            Debug.Log($"RoleDomain.Skill_Cast {role.typeName} {skill.typeName}");
             var skillStateCom = role.SkillStateComponent;
             skillStateCom.CastBegin(skill);
         }
@@ -228,7 +254,6 @@ namespace NJM.Domains {
         static void Skill_Action_Act(GameContext ctx, RoleEntity role, SkillSubEntity skill, SkillActionModel action) {
             // - Shoot Bullet
             if (action.hasShootBullet) {
-                Debug.Log($"RoleDomain.Skill_Action_Execute ShootBullet: {action.shootBulletSO.tm.typeName}");
                 Vector3 fwd;
                 if (role.hasAimHitPoint) {
                     fwd = role.aimHitPoint - role.Mod.logic_muzzle.position;

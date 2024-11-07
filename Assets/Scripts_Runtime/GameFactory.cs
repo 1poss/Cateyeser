@@ -129,6 +129,9 @@ namespace NJM {
 
             attrCom.dmg = tm.dmg;
 
+            // - Effector
+            bullet.effectorModel = tm.effectorModel;
+
             // - State
             bullet.originPos = originPos;
             bullet.originForward = originForward;

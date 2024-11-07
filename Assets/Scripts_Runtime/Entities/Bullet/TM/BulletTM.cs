@@ -25,6 +25,9 @@ namespace NJM.Template {
         public float flySpeed;
         public int dmg;
 
+        // ==== Effector ====
+        public BulletEffectorModel effectorModel; // 注: 不是 Hit Effector
+
     }
 
 }
