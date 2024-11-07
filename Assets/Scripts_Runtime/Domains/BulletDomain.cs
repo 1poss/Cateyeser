@@ -74,15 +74,16 @@ namespace NJM.Domains {
             Die_There(ctx, bullet, hitTarget.point);
         }
 
-        static void Hit_Role(GameContext ctx, BulletEntity bullet, RoleEntity role) {
+        static void Hit_Role(GameContext ctx, BulletEntity bullet, RoleEntity victimRole) {
             var attrCom = bullet.attrComponent;
 
             // - Damage
+            victimRole.Mod.Anim_Play_GetHit();
 
             // - Hit Times
             attrCom.restHitTimes -= 1;
             if (attrCom.restHitTimes <= 0) {
-                Die_There(ctx, bullet, role.TF_Head_Pos());
+                Die_There(ctx, bullet, victimRole.TF_Head_Pos());
             }
         }
         #endregion

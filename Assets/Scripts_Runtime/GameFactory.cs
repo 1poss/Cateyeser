@@ -56,6 +56,11 @@ namespace NJM {
 
             // - Attr
             var attrCom = role.AttributeComponent;
+
+            attrCom.SetHp(tm.hp);
+            attrCom.SetHpMax(tm.hp);
+
+            role.Mass_Set(tm.mass);
             attrCom.SetMoveSpeed(tm.moveSpeed);
             attrCom.SetJumpForce(tm.jumpForce);
             attrCom.SetFallingG(tm.fallingG);

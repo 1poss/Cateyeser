@@ -5,6 +5,19 @@ namespace NJM {
 
     public class RoleAttributeComponent {
 
+        // - Health
+        int hp;
+        public int Hp => hp;
+        public void SetHp(int hp) {
+            this.hp = hp;
+        }
+
+        int hpMax;
+        public int HpMax => hpMax;
+        public void SetHpMax(int hpMax) {
+            this.hpMax = hpMax;
+        }
+
         // - Locomotion
         float moveSpeed;
         public float MoveSpeed => moveSpeed;

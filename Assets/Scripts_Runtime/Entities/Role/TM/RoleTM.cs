@@ -13,7 +13,11 @@ namespace NJM.Template {
         // - Mod
         public RoleMod modPrefab;
 
+        // - Attr: Health
+        public int hp;
+
         // - Attr: Locomotion
+        public float mass;
         public float moveSpeed;
         public float jumpForce;
         public float fallingG;

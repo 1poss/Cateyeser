@@ -89,6 +89,10 @@ namespace NJM {
             moveComponent.Land();
         }
 
+        public void Mass_Set(float mass) {
+            rb.mass = mass;
+        }
+
         public void Rotate(Vector2 lookAxis, Vector2 sensitive, float dt) {
             float x = lookAxis.x * sensitive.x * dt;
             float y = lookAxis.y * sensitive.y * dt;

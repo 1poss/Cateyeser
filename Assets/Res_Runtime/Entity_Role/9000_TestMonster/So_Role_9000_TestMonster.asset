@@ -15,8 +15,10 @@ MonoBehaviour:
   tm:
     typeID: 9000
     typeName: TestMonster
-    roleType: 0
+    roleType: 3
     modPrefab: {fileID: 1825636643801651862, guid: 67e9a8e9ab7190a4ebe580aa8260766b, type: 3}
+    hp: 10
+    mass: 1000
     moveSpeed: 2.5
     jumpForce: 6
     fallingG: 14

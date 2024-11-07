@@ -5,6 +5,8 @@ namespace NJM {
 
     public class RoleMod : MonoBehaviour {
 
+        [SerializeField] Animator anim;
+
         [SerializeField] Transform rend_bodyTF;
         [SerializeField] MeshRenderer rend_head;
         [SerializeField] MeshRenderer rend_leftHand;
@@ -71,6 +73,15 @@ namespace NJM {
 
         public Vector3 Head_TF_Forward() {
             return logic_head.transform.forward;
+        }
+
+        // - Animation
+        public void Anim_Play_Idle() {
+            anim.CrossFade(RoleAnimationConst.IDLE, 0.1f);
+        }
+
+        public void Anim_Play_GetHit() {
+            anim.CrossFade(RoleAnimationConst.GET_HIT, 0.1f);
         }
 
     }

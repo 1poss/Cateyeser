@@ -62,6 +62,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4047972025199878, guid: d7b3dac07e9b4fa38feefce470d601b0, type: 3}
   m_PrefabInstance: {fileID: 4771442194668889755}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &4856203642609803973 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95457531584545886, guid: d7b3dac07e9b4fa38feefce470d601b0, type: 3}
+  m_PrefabInstance: {fileID: 4771442194668889755}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5268473629266318340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138,6 +143,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 55c75a509fdd4540aecd4870e31229cb, type: 2}
+    - target: {fileID: 5785038652234354322, guid: 13bfca73cfc27cc4392da8fe1bc0088c, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 4856203642609803973}
     - target: {fileID: 5785038652234354322, guid: 13bfca73cfc27cc4392da8fe1bc0088c, type: 3}
       propertyPath: rend_head
       value: 
