@@ -109,7 +109,7 @@ namespace NJM {
             mod.Head_Rotate(new Vector2(x, y));
         }
 
-        public void Move_HorizontalByVelocity(Vector3 moveDir, float speed) {
+        public void Move_HorizontalByVelocity(Vector2 inputMoveAxis, Vector3 moveDir, float speed) {
             float y = rb.linearVelocity.y;
             Vector3 vel = rb.linearVelocity;
             vel = moveDir.normalized * speed;
@@ -117,7 +117,7 @@ namespace NJM {
             rb.linearVelocity = vel;
 
             // Animation
-            mod.Anim_Set_MoveSpeed(moveDir, moveDir.sqrMagnitude);
+            mod.Anim_Set_MoveSpeed(inputMoveAxis, moveDir.sqrMagnitude);
         }
 
     }

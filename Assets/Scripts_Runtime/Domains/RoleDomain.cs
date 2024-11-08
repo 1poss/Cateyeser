@@ -99,9 +99,9 @@ namespace NJM.Domains {
         #endregion
 
         #region Locomotion
-        public static void Locomotion_Move(GameContext ctx, RoleEntity role, Vector2 moveAxis, float speed) {
-            Vector3 moveDir = ctx.cameraCore.Input_GetMoveForwardDir(moveAxis);
-            role.Move_HorizontalByVelocity(moveDir, speed);
+        public static void Locomotion_Move(GameContext ctx, RoleEntity role, Vector2 inputMoveAxis, float speed) {
+            Vector3 moveDir = ctx.cameraCore.Input_GetMoveForwardDir(inputMoveAxis);
+            role.Move_HorizontalByVelocity(inputMoveAxis, moveDir, speed);
         }
 
         public static void Locomotion_Rotate(GameContext ctx, RoleEntity role, Vector2 lookAxis, Vector2 sensitive, float dt) {
